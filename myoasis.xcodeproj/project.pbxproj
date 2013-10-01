@@ -22,6 +22,7 @@
 		62DC11AC17FB3461006FB4A4 /* MainNavView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62DC11AB17FB3461006FB4A4 /* MainNavView.xib */; };
 		62DC11AF17FB3873006FB4A4 /* LocalMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62DC11AE17FB3873006FB4A4 /* LocalMapView.xib */; };
 		62DC11B117FB3923006FB4A4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DC11B017FB3923006FB4A4 /* MapKit.framework */; };
+		62DC11B417FB39A4006FB4A4 /* LocalMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DC11B317FB39A4006FB4A4 /* LocalMapViewController.m */; };
 		E9DCBE8FE91A4358835ED631 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C81A61CA6E5F4861A566CB15 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,8 @@
 		62DC11AB17FB3461006FB4A4 /* MainNavView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainNavView.xib; path = XIBs/MainNavView.xib; sourceTree = "<group>"; };
 		62DC11AE17FB3873006FB4A4 /* LocalMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocalMapView.xib; path = XIBs/LocalMapView.xib; sourceTree = "<group>"; };
 		62DC11B017FB3923006FB4A4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		62DC11B217FB39A4006FB4A4 /* LocalMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalMapViewController.h; path = Controllers/LocalMapViewController.h; sourceTree = "<group>"; };
+		62DC11B317FB39A4006FB4A4 /* LocalMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocalMapViewController.m; path = Controllers/LocalMapViewController.m; sourceTree = "<group>"; };
 		957964F3EE87490BBF7BDC38 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		C81A61CA6E5F4861A566CB15 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -121,8 +124,7 @@
 		62DC118017FB2F76006FB4A4 /* myoasis */ = {
 			isa = PBXGroup;
 			children = (
-				62DC118917FB2F76006FB4A4 /* AppDelegate.h */,
-				62DC118A17FB2F76006FB4A4 /* AppDelegate.m */,
+				62DC11B617FB39B4006FB4A4 /* Classes */,
 				62DC118C17FB2F76006FB4A4 /* Images.xcassets */,
 				62DC118117FB2F76006FB4A4 /* Supporting Files */,
 				62DC11AD17FB3467006FB4A4 /* XIBs */,
@@ -166,6 +168,25 @@
 				62DC11AE17FB3873006FB4A4 /* LocalMapView.xib */,
 			);
 			name = XIBs;
+			sourceTree = "<group>";
+		};
+		62DC11B517FB39A9006FB4A4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				62DC11B217FB39A4006FB4A4 /* LocalMapViewController.h */,
+				62DC11B317FB39A4006FB4A4 /* LocalMapViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		62DC11B617FB39B4006FB4A4 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				62DC118917FB2F76006FB4A4 /* AppDelegate.h */,
+				62DC118A17FB2F76006FB4A4 /* AppDelegate.m */,
+				62DC11B517FB39A9006FB4A4 /* Controllers */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,6 +328,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62DC11B417FB39A4006FB4A4 /* LocalMapViewController.m in Sources */,
 				62DC118B17FB2F76006FB4A4 /* AppDelegate.m in Sources */,
 				62DC118717FB2F76006FB4A4 /* main.m in Sources */,
 			);

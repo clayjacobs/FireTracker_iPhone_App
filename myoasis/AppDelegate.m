@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 
+#import "Controllers/LocalMapViewController.h"
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -18,7 +20,7 @@
     rootViewController = [[UINavigationController alloc] initWithNibName:@"MainNavView" bundle:nil];
     
     // Load up our map view
-    UIViewController *mapView = [[UIViewController alloc] initWithNibName:@"LocalMapView" bundle:nil];
+    LocalMapViewController *mapView = [[LocalMapViewController alloc] initWithNibName:@"LocalMapView" bundle:nil];
     [rootViewController addChildViewController:mapView];
     
     self.window.rootViewController = rootViewController;
