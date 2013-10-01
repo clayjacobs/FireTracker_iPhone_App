@@ -14,8 +14,12 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    // Set up the root view
-    rootViewController = [[UIViewController alloc] initWithNibName:@"MainView" bundle:nil];
+    // Set up our navigation controller
+    rootViewController = [[UINavigationController alloc] initWithNibName:@"MainNavView" bundle:nil];
+    
+    // Load up our map view
+    UIViewController *mapView = [[UIViewController alloc] initWithNibName:@"LocalMapView" bundle:nil];
+    [rootViewController addChildViewController:mapView];
     
     self.window.rootViewController = rootViewController;
     [self.window makeKeyAndVisible];

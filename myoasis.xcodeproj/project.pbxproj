@@ -19,7 +19,9 @@
 		62DC119617FB2F76006FB4A4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DC117E17FB2F76006FB4A4 /* UIKit.framework */; };
 		62DC119E17FB2F76006FB4A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62DC119C17FB2F76006FB4A4 /* InfoPlist.strings */; };
 		62DC11A017FB2F76006FB4A4 /* myoasisTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DC119F17FB2F76006FB4A4 /* myoasisTests.m */; };
-		62DC11AC17FB3461006FB4A4 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62DC11AB17FB3461006FB4A4 /* MainView.xib */; };
+		62DC11AC17FB3461006FB4A4 /* MainNavView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62DC11AB17FB3461006FB4A4 /* MainNavView.xib */; };
+		62DC11AF17FB3873006FB4A4 /* LocalMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62DC11AE17FB3873006FB4A4 /* LocalMapView.xib */; };
+		62DC11B117FB3923006FB4A4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DC11B017FB3923006FB4A4 /* MapKit.framework */; };
 		E9DCBE8FE91A4358835ED631 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C81A61CA6E5F4861A566CB15 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -50,7 +52,9 @@
 		62DC119B17FB2F76006FB4A4 /* myoasisTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "myoasisTests-Info.plist"; sourceTree = "<group>"; };
 		62DC119D17FB2F76006FB4A4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		62DC119F17FB2F76006FB4A4 /* myoasisTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = myoasisTests.m; sourceTree = "<group>"; };
-		62DC11AB17FB3461006FB4A4 /* MainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainView.xib; path = XIBs/MainView.xib; sourceTree = "<group>"; };
+		62DC11AB17FB3461006FB4A4 /* MainNavView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainNavView.xib; path = XIBs/MainNavView.xib; sourceTree = "<group>"; };
+		62DC11AE17FB3873006FB4A4 /* LocalMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocalMapView.xib; path = XIBs/LocalMapView.xib; sourceTree = "<group>"; };
+		62DC11B017FB3923006FB4A4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		957964F3EE87490BBF7BDC38 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		C81A61CA6E5F4861A566CB15 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -62,6 +66,7 @@
 			files = (
 				62DC117D17FB2F76006FB4A4 /* CoreGraphics.framework in Frameworks */,
 				62DC117F17FB2F76006FB4A4 /* UIKit.framework in Frameworks */,
+				62DC11B117FB3923006FB4A4 /* MapKit.framework in Frameworks */,
 				62DC117B17FB2F76006FB4A4 /* Foundation.framework in Frameworks */,
 				E9DCBE8FE91A4358835ED631 /* libPods.a in Frameworks */,
 			);
@@ -103,6 +108,7 @@
 		62DC117917FB2F76006FB4A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				62DC11B017FB3923006FB4A4 /* MapKit.framework */,
 				62DC117A17FB2F76006FB4A4 /* Foundation.framework */,
 				62DC117C17FB2F76006FB4A4 /* CoreGraphics.framework */,
 				62DC117E17FB2F76006FB4A4 /* UIKit.framework */,
@@ -156,7 +162,8 @@
 		62DC11AD17FB3467006FB4A4 /* XIBs */ = {
 			isa = PBXGroup;
 			children = (
-				62DC11AB17FB3461006FB4A4 /* MainView.xib */,
+				62DC11AB17FB3461006FB4A4 /* MainNavView.xib */,
+				62DC11AE17FB3873006FB4A4 /* LocalMapView.xib */,
 			);
 			name = XIBs;
 			sourceTree = "<group>";
@@ -210,6 +217,13 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = DHLabs;
 				TargetAttributes = {
+					62DC117617FB2F76006FB4A4 = {
+						SystemCapabilities = {
+							com.apple.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					62DC119117FB2F76006FB4A4 = {
 						TestTargetID = 62DC117617FB2F76006FB4A4;
 					};
@@ -238,7 +252,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62DC11AC17FB3461006FB4A4 /* MainView.xib in Resources */,
+				62DC11AC17FB3461006FB4A4 /* MainNavView.xib in Resources */,
+				62DC11AF17FB3873006FB4A4 /* LocalMapView.xib in Resources */,
 				62DC118517FB2F76006FB4A4 /* InfoPlist.strings in Resources */,
 				62DC118D17FB2F76006FB4A4 /* Images.xcassets in Resources */,
 			);
