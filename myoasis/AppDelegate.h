@@ -8,11 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+#import "RatingMenuView.h"
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate> {
 
     UINavigationController *rootViewController;
+    RatingMenuView *menuView;
+    
 }
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) UINavigationController *rootViewController;
+
++ (AppDelegate*)instance;
 
 @end

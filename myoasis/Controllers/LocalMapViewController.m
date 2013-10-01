@@ -6,7 +6,9 @@
 //  Copyright (c) 2013 DHLabs. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "LocalMapViewController.h"
+
 
 @interface LocalMapViewController ()
 
@@ -22,6 +24,7 @@
     if (self) {
         // Track the user's location.
         [mapView setUserTrackingMode: MKUserTrackingModeFollow];
+        [self setTitle:@"My Oasis"];
     }
     return self;
     
@@ -30,7 +33,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
+
 }
 
 - (void)didReceiveMemoryWarning {

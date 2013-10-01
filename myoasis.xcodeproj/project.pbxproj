@@ -23,6 +23,9 @@
 		62DC11AF17FB3873006FB4A4 /* LocalMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62DC11AE17FB3873006FB4A4 /* LocalMapView.xib */; };
 		62DC11B117FB3923006FB4A4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DC11B017FB3923006FB4A4 /* MapKit.framework */; };
 		62DC11B417FB39A4006FB4A4 /* LocalMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DC11B317FB39A4006FB4A4 /* LocalMapViewController.m */; };
+		62DC11BD17FB543E006FB4A4 /* RatingMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DC11BC17FB543E006FB4A4 /* RatingMenuView.m */; };
+		62DC11C117FB565A006FB4A4 /* sad.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DC11BF17FB565A006FB4A4 /* sad.png */; };
+		62DC11C217FB565A006FB4A4 /* sad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DC11C017FB565A006FB4A4 /* sad@2x.png */; };
 		E9DCBE8FE91A4358835ED631 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C81A61CA6E5F4861A566CB15 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +61,10 @@
 		62DC11B017FB3923006FB4A4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		62DC11B217FB39A4006FB4A4 /* LocalMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalMapViewController.h; path = Controllers/LocalMapViewController.h; sourceTree = "<group>"; };
 		62DC11B317FB39A4006FB4A4 /* LocalMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocalMapViewController.m; path = Controllers/LocalMapViewController.m; sourceTree = "<group>"; };
+		62DC11BB17FB543E006FB4A4 /* RatingMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RatingMenuView.h; path = Views/RatingMenuView.h; sourceTree = "<group>"; };
+		62DC11BC17FB543E006FB4A4 /* RatingMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RatingMenuView.m; path = Views/RatingMenuView.m; sourceTree = "<group>"; };
+		62DC11BF17FB565A006FB4A4 /* sad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sad.png; sourceTree = "<group>"; };
+		62DC11C017FB565A006FB4A4 /* sad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sad@2x.png"; sourceTree = "<group>"; };
 		957964F3EE87490BBF7BDC38 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		C81A61CA6E5F4861A566CB15 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -127,6 +134,7 @@
 				62DC11B617FB39B4006FB4A4 /* Classes */,
 				62DC118C17FB2F76006FB4A4 /* Images.xcassets */,
 				62DC118117FB2F76006FB4A4 /* Supporting Files */,
+				62DC11BE17FB565A006FB4A4 /* Resources */,
 				62DC11AD17FB3467006FB4A4 /* XIBs */,
 			);
 			path = myoasis;
@@ -182,11 +190,30 @@
 		62DC11B617FB39B4006FB4A4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				62DC11B517FB39A9006FB4A4 /* Controllers */,
+				62DC11BA17FB53E6006FB4A4 /* Views */,
 				62DC118917FB2F76006FB4A4 /* AppDelegate.h */,
 				62DC118A17FB2F76006FB4A4 /* AppDelegate.m */,
-				62DC11B517FB39A9006FB4A4 /* Controllers */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		62DC11BA17FB53E6006FB4A4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				62DC11BB17FB543E006FB4A4 /* RatingMenuView.h */,
+				62DC11BC17FB543E006FB4A4 /* RatingMenuView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		62DC11BE17FB565A006FB4A4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				62DC11BF17FB565A006FB4A4 /* sad.png */,
+				62DC11C017FB565A006FB4A4 /* sad@2x.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,7 +301,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				62DC11AC17FB3461006FB4A4 /* MainNavView.xib in Resources */,
+				62DC11C217FB565A006FB4A4 /* sad@2x.png in Resources */,
 				62DC11AF17FB3873006FB4A4 /* LocalMapView.xib in Resources */,
+				62DC11C117FB565A006FB4A4 /* sad.png in Resources */,
 				62DC118517FB2F76006FB4A4 /* InfoPlist.strings in Resources */,
 				62DC118D17FB2F76006FB4A4 /* Images.xcassets in Resources */,
 			);
@@ -328,6 +357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62DC11BD17FB543E006FB4A4 /* RatingMenuView.m in Sources */,
 				62DC11B417FB39A4006FB4A4 /* LocalMapViewController.m in Sources */,
 				62DC118B17FB2F76006FB4A4 /* AppDelegate.m in Sources */,
 				62DC118717FB2F76006FB4A4 /* main.m in Sources */,

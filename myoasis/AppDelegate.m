@@ -6,25 +6,36 @@
 //  Copyright (c) 2013 DHLabs. All rights reserved.
 //
 
+#import <AwesomeMenu.h>
 #import "AppDelegate.h"
 
 #import "Controllers/LocalMapViewController.h"
 
 @implementation AppDelegate
 
+@synthesize rootViewController;
+
++ (AppDelegate*) instance {
+    return (AppDelegate*)[[UIApplication sharedApplication] delegate];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    // Set up our navigation controller
+    //--// Set up our navigation controller
     rootViewController = [[UINavigationController alloc] initWithNibName:@"MainNavView" bundle:nil];
-    
-    // Load up our map view
+                          
+    //--// Load up our map view
     LocalMapViewController *mapView = [[LocalMapViewController alloc] initWithNibName:@"LocalMapView" bundle:nil];
     [rootViewController addChildViewController:mapView];
     
     self.window.rootViewController = rootViewController;
     [self.window makeKeyAndVisible];
+    
+    menuView = [[RatingMenuView alloc] initWithFrame:self.window.bounds];
+    [self.window addSubview:menuView];
+    
     return YES;
     
 }
