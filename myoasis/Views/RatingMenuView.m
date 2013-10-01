@@ -12,7 +12,8 @@
 
 - (id)initWithFrame:(CGRect)frame {
     
-    self = [super initWithFrame:frame];
+    self = [super initWithFrame:frame menus:nil];
+    
     if (self) {
         
         //--// Add the AwesomeMenu button
@@ -40,21 +41,19 @@
                                                                ContentImage:[UIImage imageNamed:@"icon-plus.png"]
                                                     highlightedContentImage:[UIImage imageNamed:@"icon-plus-highlighted.png"]];
         
-        menu = [[AwesomeMenu alloc] initWithFrame: frame
-                                            menus: [NSArray arrayWithObjects:starMenuItem1, starMenuItem2, starMenuItem3, nil]];
+        [self setMenusArray:[NSArray arrayWithObjects:starMenuItem1, starMenuItem2, starMenuItem3, nil]];
         
-        menu.startPoint = CGPointMake( 160.0, self.bounds.size.height - 32.0 );
+        self.startPoint = CGPointMake( 160.0, self.bounds.size.height - 32.0 );
         
-        menu.rotateAngle = - M_PI / 3;
-        menu.menuWholeAngle = M_PI;
+        self.rotateAngle = - M_PI / 3;
+        self.menuWholeAngle = M_PI;
         
-        menu.farRadius = 69.0f;
-        menu.nearRadius = 59.0f;
-        menu.endRadius = 64.0f;
+        self.farRadius = 69.0f;
+        self.nearRadius = 59.0f;
+        self.endRadius = 64.0f;
         
-        menu.timeOffset = 0.01f;
-
-        [self addSubview:menu];
+        self.timeOffset = 0.01f;
+        [self setNeedsLayout];
         
     }
     return self;

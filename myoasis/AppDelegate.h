@@ -20,6 +20,8 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UINavigationController *rootViewController;
 
-+ (AppDelegate*)instance;
++ (AppDelegate*) instance;
+
+- (void) showHomeMenu: (id)sender;
 
 @end

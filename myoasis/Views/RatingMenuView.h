@@ -9,10 +9,6 @@
 #import <AwesomeMenu/AwesomeMenu.h>
 #import <UIKit/UIKit.h>
 
-@interface RatingMenuView : UIView {
-    
-    AwesomeMenu *menu;
-    
-}
+@interface RatingMenuView : AwesomeMenu
 
 @end

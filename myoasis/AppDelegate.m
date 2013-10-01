@@ -72,4 +72,13 @@
     
 }
 
+- (void) showHomeMenu:(id)sender {
+    
+    NSLog( @"Showing home menu" );
+ 
+    UIViewController *test = [[UIViewController alloc] initWithNibName:@"MainMenu" bundle:nil];
+    [rootViewController pushViewController:test animated:YES];
+
+}
+
 @end

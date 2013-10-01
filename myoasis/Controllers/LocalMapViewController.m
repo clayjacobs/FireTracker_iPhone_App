@@ -24,7 +24,16 @@
     if (self) {
         // Track the user's location.
         [mapView setUserTrackingMode: MKUserTrackingModeFollow];
+        
         [self setTitle:@"My Oasis"];
+        
+        UIBarButtonItem *homeMenu = [[UIBarButtonItem alloc] initWithTitle: @"Menu"
+                                                                     style: UIBarButtonItemStylePlain
+                                                                    target: [AppDelegate instance]
+                                                                    action: @selector(showHomeMenu:) ];
+        
+        self.navigationItem.leftBarButtonItem = homeMenu;
+
     }
     return self;
     
