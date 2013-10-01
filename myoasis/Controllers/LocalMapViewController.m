@@ -20,8 +20,8 @@
     
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
-        
+        // Track the user's location.
+        [mapView setUserTrackingMode: MKUserTrackingModeFollow];
     }
     return self;
     
@@ -30,9 +30,6 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
-    // Zoom the map in on the current user's location.
-    [mapView setUserTrackingMode: MKUserTrackingModeFollow];
     
 }
 
@@ -49,7 +46,7 @@
     
     MKCoordinateRegion region;
     region.center = map.userLocation.coordinate;
-    region.span   = MKCoordinateSpanMake( 0.2, 0.2 );
+    region.span   = MKCoordinateSpanMake( 0.05, 0.05 );
     
     region = [map regionThatFits:region];
     [map setRegion:region animated:YES];
