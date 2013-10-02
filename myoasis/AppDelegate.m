@@ -9,7 +9,8 @@
 #import <AwesomeMenu.h>
 #import "AppDelegate.h"
 
-#import "Controllers/LocalMapViewController.h"
+#import "LocalMapViewController.h"
+
 
 @implementation AppDelegate
 
@@ -25,11 +26,19 @@
     
     //--// Set up our navigation controller
     rootViewController = [[UINavigationController alloc] initWithNibName:@"MainNavView" bundle:nil];
-                          
+    
+   
     //--// Load up our map view
     LocalMapViewController *mapView = [[LocalMapViewController alloc] initWithNibName:@"LocalMapView" bundle:nil];
-    [rootViewController addChildViewController:mapView];
     
+    [rootViewController addChildViewController:mapView];
+
+    //--// Set up navigation style
+    [rootViewController.navigationBar setTintColor: [UIColor orangeColor]];
+    [rootViewController.navigationBar setBarTintColor: [UIColor whiteColor]];
+
+    
+
     self.window.rootViewController = rootViewController;
     [self.window makeKeyAndVisible];
     
@@ -79,6 +88,20 @@
     UIViewController *test = [[UIViewController alloc] initWithNibName:@"MainMenu" bundle:nil];
     [rootViewController pushViewController:test animated:YES];
 
+}
+
+- (void) takePicture:(id)sender withTag:(int)tag {
+    
+    if( imageTagger == nil ) {
+        imageTagger = [[ImageTaggerViewController alloc] init];
+    }
+
+    [self toggleRatingMenu];
+    [rootViewController presentViewController:imageTagger.imagePicker animated:YES completion:nil];
+}
+
+- (void) toggleRatingMenu {
+    [menuView setHidden: !menuView.hidden];
 }
 
 @end

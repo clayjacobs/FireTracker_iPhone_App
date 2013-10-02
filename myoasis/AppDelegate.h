@@ -9,10 +9,15 @@
 #import <UIKit/UIKit.h>
 
 #import "RatingMenuView.h"
+#import "ImageTaggerViewController.h"
+
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate> {
 
     UINavigationController *rootViewController;
+    
+    ImageTaggerViewController *imageTagger;
+    
     RatingMenuView *menuView;
     
 }
@@ -23,5 +28,7 @@
 + (AppDelegate*) instance;
 
 - (void) showHomeMenu: (id)sender;
+- (void) takePicture: (id)sender withTag: (int)tag;
+- (void) toggleRatingMenu;
 
 @end

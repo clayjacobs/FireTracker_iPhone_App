@@ -9,6 +9,8 @@
 #import <AwesomeMenu/AwesomeMenu.h>
 #import <UIKit/UIKit.h>
 
-@interface RatingMenuView : AwesomeMenu
+@interface RatingMenuView : AwesomeMenu<AwesomeMenuDelegate> {
+    
+}
 
 @end

@@ -27,6 +27,7 @@
 		62DC11C117FB565A006FB4A4 /* sad.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DC11BF17FB565A006FB4A4 /* sad.png */; };
 		62DC11C217FB565A006FB4A4 /* sad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DC11C017FB565A006FB4A4 /* sad@2x.png */; };
 		62DC11C417FB6D2B006FB4A4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62DC11C317FB6D2B006FB4A4 /* MainMenu.xib */; };
+		62DC11C717FC8655006FB4A4 /* ImageTaggerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DC11C617FC8655006FB4A4 /* ImageTaggerViewController.m */; };
 		E9DCBE8FE91A4358835ED631 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C81A61CA6E5F4861A566CB15 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,8 @@
 		62DC11BF17FB565A006FB4A4 /* sad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sad.png; sourceTree = "<group>"; };
 		62DC11C017FB565A006FB4A4 /* sad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sad@2x.png"; sourceTree = "<group>"; };
 		62DC11C317FB6D2B006FB4A4 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = XIBs/MainMenu.xib; sourceTree = "<group>"; };
+		62DC11C517FC8655006FB4A4 /* ImageTaggerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageTaggerViewController.h; path = Controllers/ImageTaggerViewController.h; sourceTree = "<group>"; };
+		62DC11C617FC8655006FB4A4 /* ImageTaggerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageTaggerViewController.m; path = Controllers/ImageTaggerViewController.m; sourceTree = "<group>"; };
 		957964F3EE87490BBF7BDC38 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		C81A61CA6E5F4861A566CB15 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -186,6 +189,8 @@
 			children = (
 				62DC11B217FB39A4006FB4A4 /* LocalMapViewController.h */,
 				62DC11B317FB39A4006FB4A4 /* LocalMapViewController.m */,
+				62DC11C517FC8655006FB4A4 /* ImageTaggerViewController.h */,
+				62DC11C617FC8655006FB4A4 /* ImageTaggerViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -362,6 +367,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				62DC11BD17FB543E006FB4A4 /* RatingMenuView.m in Sources */,
+				62DC11C717FC8655006FB4A4 /* ImageTaggerViewController.m in Sources */,
 				62DC11B417FB39A4006FB4A4 /* LocalMapViewController.m in Sources */,
 				62DC118B17FB2F76006FB4A4 /* AppDelegate.m in Sources */,
 				62DC118717FB2F76006FB4A4 /* main.m in Sources */,
