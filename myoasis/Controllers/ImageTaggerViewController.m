@@ -42,9 +42,12 @@
 }
 
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    NSURL *mediaUrl = (NSURL*)[info valueForKey:UIImagePickerControllerMediaURL];
+    NSLog( @"MEDIA: %@", [mediaUrl absoluteString] );
 
     [imagePicker dismissViewControllerAnimated:YES completion:^(void) {
-       [[AppDelegate instance] toggleRatingMenu];
+        [[AppDelegate instance] toggleRatingMenu];
     }];
     
 }
