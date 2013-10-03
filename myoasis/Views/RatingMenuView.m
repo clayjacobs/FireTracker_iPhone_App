@@ -27,34 +27,38 @@
        
         [self setImage: [UIImage imageNamed:@"bg-add-rating.png"]];
         
-        AwesomeMenuItem *starMenuItem1 = [[AwesomeMenuItem alloc] initWithImage: ratingItemImage
-                                                               highlightedImage: ratingItemImagePressed
-                                                                   ContentImage: [UIImage imageNamed:@"meh.png"]
-                                                        highlightedContentImage: nil];
+        AwesomeMenuItem *mehItem = [[AwesomeMenuItem alloc] initWithImage: ratingItemImage
+                                                         highlightedImage: ratingItemImagePressed
+                                                             ContentImage: [UIImage imageNamed:@"meh.png"]
+                                                  highlightedContentImage: nil];
 
-        AwesomeMenuItem *starMenuItem2 = [[AwesomeMenuItem alloc] initWithImage: ratingItemImage
-                                                               highlightedImage: ratingItemImagePressed
-                                                                   ContentImage: [UIImage imageNamed:@"sad.png"]
-                                                        highlightedContentImage: nil];
+        AwesomeMenuItem *sadItem = [[AwesomeMenuItem alloc] initWithImage: ratingItemImage
+                                                         highlightedImage: ratingItemImagePressed
+                                                             ContentImage: [UIImage imageNamed:@"sad.png"]
+                                                  highlightedContentImage: nil];
         
-        AwesomeMenuItem *starMenuItem3 = [[AwesomeMenuItem alloc] initWithImage: ratingItemImage
-                                                               highlightedImage: ratingItemImagePressed
-                                                                   ContentImage: [UIImage imageNamed:@"biohazard"]
-                                                        highlightedContentImage: nil];
+        AwesomeMenuItem *bioItem = [[AwesomeMenuItem alloc] initWithImage: ratingItemImage
+                                                         highlightedImage: ratingItemImagePressed
+                                                             ContentImage: [UIImage imageNamed:@"biohazard"]
+                                                  highlightedContentImage: nil];
         
-        [self setMenusArray:[NSArray arrayWithObjects:starMenuItem1, starMenuItem2, starMenuItem3, nil]];
+        [self setMenusArray: [NSArray arrayWithObjects: mehItem, sadItem, bioItem, nil]];
         
-        self.startPoint = CGPointMake( 160.0, self.bounds.size.height - 64.0 );
+        // Align the button in the horizontal middle, a bit from the bottom of the screen.
+        self.startPoint = CGPointMake( self.bounds.size.width / 2, self.bounds.size.height - 64.0 );
         
-        self.rotateAngle = - M_PI / 3;
+        // Rotate so that the menu pops above the + icon.
+        self.rotateAngle    = -M_PI / 3;
         self.menuWholeAngle = M_PI;
         
-        self.endRadius = 80.0f;
+        // Set how far away the buttons will fly out.
+        self.endRadius  = 80.0f;
         
-        self.farRadius = self.endRadius + 5;
+        // Set the bounce/flying animation parameters
+        self.farRadius  = self.endRadius + 5;
         self.nearRadius = self.endRadius - 5;
-        
         self.timeOffset = 0.01f;
+        
         [self setNeedsLayout];
         
     }

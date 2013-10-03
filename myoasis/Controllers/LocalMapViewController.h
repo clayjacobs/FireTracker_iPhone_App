@@ -18,4 +18,6 @@
 
 @property (nonatomic, retain) CLLocation* location;
 
+- (void) addAnnotation: (int) tagType;
+
 @end

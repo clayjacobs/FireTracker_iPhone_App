@@ -20,6 +20,8 @@
     
     RatingMenuView *menuView;
     
+    int currentTag;
+    
 }
 
 @property (strong, nonatomic) UIWindow *window;
@@ -27,6 +29,7 @@
 
 + (AppDelegate*) instance;
 
+- (void) addAnnotation;
 - (void) showHomeMenu: (id)sender;
 - (void) takePicture: (id)sender withTag: (int)tag;
 - (void) toggleRatingMenu;

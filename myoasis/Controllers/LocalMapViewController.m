@@ -6,8 +6,12 @@
 //  Copyright (c) 2013 DHLabs. All rights reserved.
 //
 
-#import "AppDelegate.h"
 #import "LocalMapViewController.h"
+
+#import "AppDelegate.h"
+
+#import "RatingAnnotation.h"
+#import "RatingAnnotationView.h"
 
 
 @interface LocalMapViewController ()
@@ -27,12 +31,12 @@
         
         [self setTitle:@"My Oasis"];
         
-        UIBarButtonItem *homeMenu = [[UIBarButtonItem alloc] initWithTitle: @"Menu"
-                                                                     style: UIBarButtonItemStylePlain
-                                                                    target: [AppDelegate instance]
-                                                                    action: @selector(showHomeMenu:) ];
-        
-        self.navigationItem.leftBarButtonItem = homeMenu;
+//        UIBarButtonItem *homeMenu = [[UIBarButtonItem alloc] initWithTitle: @"Menu"
+//                                                                     style: UIBarButtonItemStylePlain
+//                                                                    target: [AppDelegate instance]
+//                                                                    action: @selector(showHomeMenu:) ];
+//        
+//        self.navigationItem.leftBarButtonItem = homeMenu;
 
     }
     return self;
@@ -52,6 +56,17 @@
     
 }
 
+- (void) addAnnotation: (int)tagType {
+    
+    RatingAnnotation *annotation = [[RatingAnnotation alloc] init];
+    [annotation setCoordinate: self.location.coordinate];
+    [annotation setTitle: @"TESTING"];
+    [annotation setTag:tagType];
+    
+    [mapView addAnnotation: annotation];
+    
+}
+
 - (void) mapView:(MKMapView *)map didUpdateUserLocation:(MKUserLocation *)userLocation {
     
     self.location = userLocation.location;
@@ -62,7 +77,38 @@
     
     region = [map regionThatFits:region];
     [map setRegion:region animated:YES];
+    
+}
 
+- (MKAnnotationView *)mapView:(MKMapView *)map viewForAnnotation:(id<MKAnnotation>)annotation {
+    
+    static NSString *const kMehAnnotationId         = @"MehAnnotation";
+    static NSString *const kSadAnnotationId         = @"SadAnnotation";
+    static NSString *const kBiohazardAnnotationId   = @"BiohazardAnnotation";
+
+    if( annotation == map.userLocation ) {
+        return nil;
+    }
+    
+    RatingAnnotation *pin = (RatingAnnotation*)annotation;
+    
+    NSString *kAnnotationIdentifier = nil;
+    if( pin.tag == 0 ) {
+        kAnnotationIdentifier = kMehAnnotationId;
+    } else if( pin.tag == 1 ) {
+        kAnnotationIdentifier = kSadAnnotationId;
+    } else {
+        kAnnotationIdentifier = kBiohazardAnnotationId;
+    }
+    
+    RatingAnnotationView *pinView = (RatingAnnotationView*)[map dequeueReusableAnnotationViewWithIdentifier:kAnnotationIdentifier];
+    
+    if( !pinView ) {
+        pinView = [[RatingAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:kAnnotationIdentifier];
+    }
+    
+    [pinView setAnnotation:annotation];
+    return pinView;
     
 }
 

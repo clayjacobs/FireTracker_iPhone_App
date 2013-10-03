@@ -12,6 +12,14 @@
 #import "LocalMapViewController.h"
 
 
+@interface AppDelegate () {
+    
+    LocalMapViewController *mapView;
+    
+}
+
+@end
+
 @implementation AppDelegate
 
 @synthesize rootViewController;
@@ -19,6 +27,9 @@
 + (AppDelegate*) instance {
     return (AppDelegate*)[[UIApplication sharedApplication] delegate];
 }
+
+#pragma mark -
+#pragma mark Application Delegate Functions
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
@@ -29,15 +40,15 @@
     
    
     //--// Load up our map view
-    LocalMapViewController *mapView = [[LocalMapViewController alloc] initWithNibName:@"LocalMapView" bundle:nil];
+    mapView = [[LocalMapViewController alloc] initWithNibName:@"LocalMapView" bundle:nil];
     
     [rootViewController addChildViewController:mapView];
 
     //--// Set up navigation style
     [rootViewController.navigationBar setTintColor: [UIColor orangeColor]];
-    [rootViewController.navigationBar setBarTintColor: [UIColor whiteColor]];
-
-    
+    if( [[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0f ) {
+        [rootViewController.navigationBar setBarTintColor: [UIColor whiteColor]];
+    }
 
     self.window.rootViewController = rootViewController;
     [self.window makeKeyAndVisible];
@@ -81,6 +92,13 @@
     
 }
 
+#pragma mark -
+#pragma mark Public functions
+
+- (void) addAnnotation {
+    [mapView addAnnotation: currentTag];
+}
+
 - (void) showHomeMenu:(id)sender {
     
     NSLog( @"Showing home menu" );
@@ -92,10 +110,12 @@
 
 - (void) takePicture:(id)sender withTag:(int)tag {
     
+    currentTag = tag;
+    
     if( imageTagger == nil ) {
         imageTagger = [[ImageTaggerViewController alloc] init];
     }
-
+    
     [self toggleRatingMenu];
     [rootViewController presentViewController:imageTagger.imagePicker animated:YES completion:nil];
 }

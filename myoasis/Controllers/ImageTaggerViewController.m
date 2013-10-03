@@ -47,6 +47,7 @@
     NSLog( @"MEDIA: %@", [mediaUrl absoluteString] );
 
     [imagePicker dismissViewControllerAnimated:YES completion:^(void) {
+        [[AppDelegate instance] addAnnotation];
         [[AppDelegate instance] toggleRatingMenu];
     }];
     
@@ -55,6 +56,7 @@
 - (void) imagePickerControllerDidCancel:(UIImagePickerController *)picker {
 
     [imagePicker dismissViewControllerAnimated:YES completion:^(void) {
+        [[AppDelegate instance] addAnnotation];
         [[AppDelegate instance] toggleRatingMenu];
     }];
     
