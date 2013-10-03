@@ -43,19 +43,6 @@
     
 }
 
-- (void)viewDidLoad {
-    
-    [super viewDidLoad];
-
-}
-
-- (void)didReceiveMemoryWarning {
-    
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-    
-}
-
 - (void) addAnnotation: (int)tagType {
     
     RatingAnnotation *annotation = [[RatingAnnotation alloc] init];
@@ -66,6 +53,9 @@
     [mapView addAnnotation: annotation];
     
 }
+
+#pragma mark -
+#pragma mark MKMapViewDelegate functions
 
 - (void) mapView:(MKMapView *)map didUpdateUserLocation:(MKUserLocation *)userLocation {
     
@@ -82,32 +72,24 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)map viewForAnnotation:(id<MKAnnotation>)annotation {
     
-    static NSString *const kMehAnnotationId         = @"MehAnnotation";
-    static NSString *const kSadAnnotationId         = @"SadAnnotation";
-    static NSString *const kBiohazardAnnotationId   = @"BiohazardAnnotation";
-
+    // If this is the annotation for the user's location, ignore it.
     if( annotation == map.userLocation ) {
         return nil;
     }
     
+    // All other annotation's on the screen will be <RatingAnnotation>.
     RatingAnnotation *pin = (RatingAnnotation*)annotation;
+    RatingAnnotationView *pinView = (RatingAnnotationView*)[map dequeueReusableAnnotationViewWithIdentifier: pin.identifier];
     
-    NSString *kAnnotationIdentifier = nil;
-    if( pin.tag == 0 ) {
-        kAnnotationIdentifier = kMehAnnotationId;
-    } else if( pin.tag == 1 ) {
-        kAnnotationIdentifier = kSadAnnotationId;
-    } else {
-        kAnnotationIdentifier = kBiohazardAnnotationId;
-    }
-    
-    RatingAnnotationView *pinView = (RatingAnnotationView*)[map dequeueReusableAnnotationViewWithIdentifier:kAnnotationIdentifier];
-    
+    // If this pin view doesn't exist already, create it!
     if( !pinView ) {
-        pinView = [[RatingAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:kAnnotationIdentifier];
+        pinView = [[RatingAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier: pin.identifier];
     }
     
+    // Setup the views/etc. for this annotation
     [pinView setAnnotation:annotation];
+    
+    
     return pinView;
     
 }

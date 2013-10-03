@@ -34,6 +34,9 @@
         [self setFrame:frame];
         [self setImage:annotationImage];
         
+        [self setEnabled:YES];
+        [self setCanShowCallout:YES];
+        
     }
 
     return self;
