@@ -43,12 +43,14 @@
 
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
-    NSURL *mediaUrl = (NSURL*)[info valueForKey:UIImagePickerControllerMediaURL];
-    NSLog( @"MEDIA: %@", [mediaUrl absoluteString] );
+    UIImage *taggedImage = (UIImage*)[info valueForKey: UIImagePickerControllerOriginalImage];
+    NSLog( @"IMAGE: %@", [taggedImage description] );
 
     [imagePicker dismissViewControllerAnimated:YES completion:^(void) {
-        [[AppDelegate instance] addAnnotation];
+        
+        [[AppDelegate instance] addAnnotation: taggedImage];
         [[AppDelegate instance] toggleRatingMenu];
+        
     }];
     
 }
@@ -56,8 +58,10 @@
 - (void) imagePickerControllerDidCancel:(UIImagePickerController *)picker {
 
     [imagePicker dismissViewControllerAnimated:YES completion:^(void) {
-        [[AppDelegate instance] addAnnotation];
+        
+        [[AppDelegate instance] addAnnotation: [UIImage imageNamed:@"biohazard.png"]];
         [[AppDelegate instance] toggleRatingMenu];
+        
     }];
     
 }

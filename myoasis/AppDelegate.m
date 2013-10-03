@@ -35,11 +35,13 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    //--// Set up our navigation controller
+    //--// Set up our navigation controller.
     rootViewController = [[UINavigationController alloc] initWithNibName:@"MainNavView" bundle:nil];
     
+    //--// Prep our image tagger view.
+    imageTagger = [[ImageTaggerViewController alloc] init];
    
-    //--// Load up our map view
+    //--// Load up our map view.
     mapView = [[LocalMapViewController alloc] initWithNibName:@"LocalMapView" bundle:nil];
     
     [rootViewController addChildViewController:mapView];
@@ -95,8 +97,8 @@
 #pragma mark -
 #pragma mark Public functions
 
-- (void) addAnnotation {
-    [mapView addAnnotation: currentTag];
+- (void) addAnnotation: (UIImage*) taggedImage {
+    [mapView addAnnotation: currentTag withImage: taggedImage];
 }
 
 - (void) showHomeMenu:(id)sender {
@@ -112,16 +114,23 @@
     
     currentTag = tag;
     
-    if( imageTagger == nil ) {
-        imageTagger = [[ImageTaggerViewController alloc] init];
-    }
-    
     [self toggleRatingMenu];
     [rootViewController presentViewController:imageTagger.imagePicker animated:YES completion:nil];
 }
 
 - (void) toggleRatingMenu {
-    [menuView setHidden: !menuView.hidden];
+    
+    CGFloat alpha = 0.0;
+    if( menuView.alpha < 1.0 ) {
+        alpha = 1.0;
+    }
+    
+    [UIView animateWithDuration:0.25 animations:^(void) {
+        
+        menuView.alpha = alpha;
+        
+    } completion:^(BOOL finished) {}];
+
 }
 
 @end

@@ -7,17 +7,18 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocalMapViewController">
             <connections>
+                <outlet property="annotationDetail" destination="cHI-gn-YHF" id="jyd-RC-Wgp"/>
                 <outlet property="mapView" destination="UOZ-Av-NPA" id="CPt-ln-SOz"/>
                 <outlet property="view" destination="1" id="e0D-gV-2dy"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="1">
+        <view contentMode="scaleToFill" id="1" userLabel="Map View">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UOZ-Av-NPA">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="688"/>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UOZ-Av-NPA">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="dOF-Xk-LAJ"/>
@@ -25,9 +26,76 @@
                 </mapView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="UOZ-Av-NPA" secondAttribute="bottom" id="Mlv-xg-e7J"/>
+                <constraint firstItem="UOZ-Av-NPA" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="PfJ-Xz-Hrh"/>
+                <constraint firstAttribute="trailing" secondItem="UOZ-Av-NPA" secondAttribute="trailing" id="VY7-g4-uxq"/>
+                <constraint firstItem="UOZ-Av-NPA" firstAttribute="top" secondItem="1" secondAttribute="top" id="zPO-WJ-nRe"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
+        <view contentMode="scaleToFill" id="cHI-gn-YHF" customClass="RatingDetailView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="200" image="sad.png" translatesAutoresizingMaskIntoConstraints="NO" id="yjx-1F-rg4">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="472"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ecp-2n-DrX" userLabel="Comments">
+                    <rect key="frame" x="144" y="496" width="32" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" image="comment.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsL-gE-awr" userLabel="Thumbs Down">
+                    <rect key="frame" x="58" y="496" width="32" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" image="thumbs-down.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d0z-jm-JLO" userLabel="Thumbs Up">
+                    <rect key="frame" x="230" y="496" width="32" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" image="thumbs-up.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Ecp-2n-DrX" firstAttribute="top" secondItem="yjx-1F-rg4" secondAttribute="bottom" constant="24" id="5Dc-SQ-FZN"/>
+                <constraint firstItem="d0z-jm-JLO" firstAttribute="top" secondItem="yjx-1F-rg4" secondAttribute="bottom" constant="24" id="8uL-A3-KSq"/>
+                <constraint firstItem="yjx-1F-rg4" firstAttribute="top" secondItem="cHI-gn-YHF" secondAttribute="top" id="WYc-6E-wrb"/>
+                <constraint firstItem="yjx-1F-rg4" firstAttribute="centerX" secondItem="Ecp-2n-DrX" secondAttribute="centerX" id="YGM-jk-yRu"/>
+                <constraint firstItem="d0z-jm-JLO" firstAttribute="leading" secondItem="Ecp-2n-DrX" secondAttribute="trailing" constant="54" id="Zp8-Ys-aU7"/>
+                <constraint firstAttribute="bottom" secondItem="d0z-jm-JLO" secondAttribute="bottom" constant="40" id="hVg-DJ-RbL"/>
+                <constraint firstItem="dsL-gE-awr" firstAttribute="top" secondItem="yjx-1F-rg4" secondAttribute="bottom" constant="24" id="m7U-8t-mNc"/>
+                <constraint firstAttribute="trailing" secondItem="yjx-1F-rg4" secondAttribute="trailing" id="oHg-6e-tbW"/>
+                <constraint firstAttribute="bottom" secondItem="Ecp-2n-DrX" secondAttribute="bottom" constant="40" id="qxt-14-Ucz"/>
+                <constraint firstAttribute="bottom" secondItem="dsL-gE-awr" secondAttribute="bottom" constant="40" id="tDh-X4-Tzd"/>
+                <constraint firstItem="yjx-1F-rg4" firstAttribute="leading" secondItem="cHI-gn-YHF" secondAttribute="leading" id="v3g-rb-zXu"/>
+                <constraint firstItem="Ecp-2n-DrX" firstAttribute="leading" secondItem="dsL-gE-awr" secondAttribute="trailing" constant="54" id="veN-bg-0Jm"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <connections>
+                <outlet property="taggedImage" destination="yjx-1F-rg4" id="Pno-OE-u8r"/>
+            </connections>
+        </view>
     </objects>
+    <resources>
+        <image name="comment.png" width="32" height="32"/>
+        <image name="sad.png" width="40" height="40"/>
+        <image name="thumbs-down.png" width="32" height="32"/>
+        <image name="thumbs-up.png" width="32" height="32"/>
+    </resources>
 </document>

@@ -29,7 +29,7 @@
 
 + (AppDelegate*) instance;
 
-- (void) addAnnotation;
+- (void) addAnnotation: (UIImage*) taggedImage;
 - (void) showHomeMenu: (id)sender;
 - (void) takePicture: (id)sender withTag: (int)tag;
 - (void) toggleRatingMenu;

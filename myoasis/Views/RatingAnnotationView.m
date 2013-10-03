@@ -35,7 +35,7 @@
         [self setImage:annotationImage];
         
         [self setEnabled:YES];
-        [self setCanShowCallout:YES];
+        [self setCanShowCallout:NO];
         
     }
 

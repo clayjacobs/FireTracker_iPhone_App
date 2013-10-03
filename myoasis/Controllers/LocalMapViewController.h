@@ -9,15 +9,21 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
+#import "RatingDetailView.h"
+
+
 @interface LocalMapViewController : UIViewController<MKMapViewDelegate> {
     
-    IBOutlet MKMapView* mapView;
-    CLLocation* location;
+    IBOutlet MKMapView *mapView;
+    IBOutlet RatingDetailView *annotationDetail;
+    
+    // User's current location
+    CLLocation *location;
     
 }
 
 @property (nonatomic, retain) CLLocation* location;
 
-- (void) addAnnotation: (int) tagType;
+- (void) addAnnotation: (int) tagType withImage: (UIImage*) taggedImage;
 
 @end
