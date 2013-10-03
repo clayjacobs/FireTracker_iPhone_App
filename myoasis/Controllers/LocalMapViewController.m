@@ -102,7 +102,7 @@
     
     // Hide the user location annotation.
     MKAnnotationView *ulv = [map viewForAnnotation: mapView.userLocation];
-    ulv.hidden = YES;
+    ulv.enabled = NO;
     
 }
 
