@@ -48,7 +48,7 @@
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-    
+
     [annotationDetail setFrame: self.view.bounds];
     [annotationDetail layoutIfNeeded];
     
@@ -79,13 +79,10 @@
 - (void) hideCloseDetailViewButton {
     
     // Create zoom-out animation when the user closes the detail view.
-    CGRect frame = [self.view bounds];
-    
     [[AppDelegate instance] toggleRatingMenu];
     [UIView animateWithDuration:0.25 animations:^{
         
-        annotationDetail.transform = CGAffineTransformMakeScale( 1 / frame.size.width,
-                                                                 1 / frame.size.height );
+        annotationDetail.transform = CGAffineTransformMakeScale( 0.1, 0.1 );
         
     } completion:^(BOOL finished) {
         
@@ -97,14 +94,6 @@
 
 #pragma mark -
 #pragma mark MKMapViewDelegate functions
-
-- (void) mapView:(MKMapView *)map didAddAnnotationViews:(NSArray *)views {
-    
-    // Hide the user location annotation.
-    MKAnnotationView *ulv = [map viewForAnnotation: mapView.userLocation];
-    ulv.enabled = NO;
-    
-}
 
 - (void) mapView:(MKMapView *)map didUpdateUserLocation:(MKUserLocation *)userLocation {
     
@@ -153,10 +142,10 @@
     // Create animation!
     // We want the view to look like it's zooming in from the center of the screen.
     [annotationDetail setAnnotation: view.annotation];
-    CGRect frame = annotationDetail.bounds;
+    annotationDetail.bounds = self.view.bounds;
+    [annotationDetail setNeedsLayout];
     
-    // Start off completely zoomed out.
-    annotationDetail.transform = CGAffineTransformMakeScale( 1 / frame.size.width, 1 / frame.size.height );
+    annotationDetail.transform = CGAffineTransformMakeScale( 0.1, 0.1 );
     [self.view addSubview: annotationDetail];
     
     [[AppDelegate instance] toggleRatingMenu];
