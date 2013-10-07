@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6217B79E1803591A00194120 /* heatmap@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6217B79D1803591A00194120 /* heatmap@2x.png */; };
+		6217B7A2180359BD00194120 /* HeatmapAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6217B7A1180359BD00194120 /* HeatmapAnnotationView.m */; };
+		6217B7A418035AB100194120 /* heatmap.png in Resources */ = {isa = PBXBuildFile; fileRef = 6217B7A318035AB100194120 /* heatmap.png */; };
 		626B424917FD37600088405A /* RatingDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 626B424817FD37600088405A /* RatingDetailView.m */; };
 		62DC117B17FB2F76006FB4A4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DC117A17FB2F76006FB4A4 /* Foundation.framework */; };
 		62DC117D17FB2F76006FB4A4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DC117C17FB2F76006FB4A4 /* CoreGraphics.framework */; };
@@ -67,6 +70,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6217B79D1803591A00194120 /* heatmap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heatmap@2x.png"; sourceTree = "<group>"; };
+		6217B7A0180359BD00194120 /* HeatmapAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeatmapAnnotationView.h; path = Views/HeatmapAnnotationView.h; sourceTree = "<group>"; };
+		6217B7A1180359BD00194120 /* HeatmapAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeatmapAnnotationView.m; path = Views/HeatmapAnnotationView.m; sourceTree = "<group>"; };
+		6217B7A318035AB100194120 /* heatmap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heatmap.png; sourceTree = "<group>"; };
 		626B424717FD37600088405A /* RatingDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RatingDetailView.h; path = Views/RatingDetailView.h; sourceTree = "<group>"; };
 		626B424817FD37600088405A /* RatingDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RatingDetailView.m; path = Views/RatingDetailView.m; sourceTree = "<group>"; };
 		62DC117717FB2F76006FB4A4 /* myoasis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myoasis.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +160,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6217B79F180359A600194120 /* Annotations */ = {
+			isa = PBXGroup;
+			children = (
+				62ECC96B17FD003100FA0422 /* RatingAnnotationView.h */,
+				62ECC96C17FD003100FA0422 /* RatingAnnotationView.m */,
+				6217B7A0180359BD00194120 /* HeatmapAnnotationView.h */,
+				6217B7A1180359BD00194120 /* HeatmapAnnotationView.m */,
+			);
+			name = Annotations;
+			sourceTree = "<group>";
+		};
 		62DC116E17FB2F76006FB4A4 = {
 			isa = PBXGroup;
 			children = (
@@ -264,8 +282,7 @@
 			children = (
 				62ECC96E17FD043F00FA0422 /* RatingAnnotation.h */,
 				62ECC96F17FD043F00FA0422 /* RatingAnnotation.m */,
-				62ECC96B17FD003100FA0422 /* RatingAnnotationView.h */,
-				62ECC96C17FD003100FA0422 /* RatingAnnotationView.m */,
+				6217B79F180359A600194120 /* Annotations */,
 				62DC11BB17FB543E006FB4A4 /* RatingMenuView.h */,
 				62DC11BC17FB543E006FB4A4 /* RatingMenuView.m */,
 				626B424717FD37600088405A /* RatingDetailView.h */,
@@ -327,6 +344,8 @@
 		62ECC97117FD08A000FA0422 /* Annotation Icons */ = {
 			isa = PBXGroup;
 			children = (
+				6217B7A318035AB100194120 /* heatmap.png */,
+				6217B79D1803591A00194120 /* heatmap@2x.png */,
 				62ECC97417FD096000FA0422 /* biohazard-annotation.png */,
 				62ECC97517FD096000FA0422 /* biohazard-annotation@2x.png */,
 				62ECC97617FD096000FA0422 /* meh-annotation.png */,
@@ -428,6 +447,7 @@
 				62DC11CF17FC913A006FB4A4 /* bg-rating-item@2x.png in Resources */,
 				62DC664317FDE3710034EDC5 /* thumbs-down@2x.png in Resources */,
 				62DC664517FDE3710034EDC5 /* thumbs-up@2x.png in Resources */,
+				6217B7A418035AB100194120 /* heatmap.png in Resources */,
 				62ECC97917FD096000FA0422 /* biohazard-annotation.png in Resources */,
 				62DC11D317FC9321006FB4A4 /* bg-rating-item-highlighted@2x.png in Resources */,
 				62DC11DD17FC96D9006FB4A4 /* meh.png in Resources */,
@@ -447,6 +467,7 @@
 				62ECC97317FD08AA00FA0422 /* meh-annotation@2x.png in Resources */,
 				62ECC97A17FD096000FA0422 /* biohazard-annotation@2x.png in Resources */,
 				62DC11D917FC95FE006FB4A4 /* biohazard.png in Resources */,
+				6217B79E1803591A00194120 /* heatmap@2x.png in Resources */,
 				62DC11DA17FC95FE006FB4A4 /* biohazard@2x.png in Resources */,
 				62DC118D17FB2F76006FB4A4 /* Images.xcassets in Resources */,
 				62DC663D17FDD56E0034EDC5 /* comment@2x.png in Resources */,
@@ -506,6 +527,7 @@
 				62DC11BD17FB543E006FB4A4 /* RatingMenuView.m in Sources */,
 				62DC11C717FC8655006FB4A4 /* ImageTaggerViewController.m in Sources */,
 				62DC11B417FB39A4006FB4A4 /* LocalMapViewController.m in Sources */,
+				6217B7A2180359BD00194120 /* HeatmapAnnotationView.m in Sources */,
 				62DC118B17FB2F76006FB4A4 /* AppDelegate.m in Sources */,
 				62ECC97017FD043F00FA0422 /* RatingAnnotation.m in Sources */,
 				62DC118717FB2F76006FB4A4 /* main.m in Sources */,

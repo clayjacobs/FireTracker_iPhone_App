@@ -16,6 +16,7 @@
     
     IBOutlet MKMapView *mapView;
     IBOutlet RatingDetailView *annotationDetail;
+    IBOutlet UISegmentedControl *mapViewOptionsControl;
     
     // User's current location
     CLLocation *location;
@@ -25,5 +26,7 @@
 @property (nonatomic, retain) CLLocation* location;
 
 - (void) addAnnotation: (int) tagType withImage: (UIImage*) taggedImage;
+
+- (IBAction) mapViewOptionSelected: (id)sender;
 
 @end

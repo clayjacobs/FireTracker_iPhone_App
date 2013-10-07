@@ -12,6 +12,10 @@
 
 #import "RatingAnnotation.h"
 #import "RatingAnnotationView.h"
+#import "HeatmapAnnotationView.h"
+
+#define MAP_VIEW_PINS       0
+#define MAP_VIEW_HEATMAP    1
 
 
 @interface LocalMapViewController ()
@@ -66,6 +70,27 @@
     
 }
 
+- (IBAction) mapViewOptionSelected:(id)sender {
+    
+    // TODO: Find a better way of updating annotations
+    // At the moment, the way we update the annotation view is to re-add every annotation
+    // back into the map.
+    for( id<MKAnnotation> annotation in [mapView annotations] ) {
+        
+        if( annotation == mapView.userLocation ) {
+            continue;
+        }
+        
+        [mapView removeAnnotation: annotation];
+        [mapView addAnnotation: annotation];
+        
+    }
+    
+}
+
+#pragma mark -
+#pragma mark Private Functions
+
 - (void) showCloseDetailViewButton {
     UIBarButtonItem *homeMenu = [[UIBarButtonItem alloc] initWithTitle: @"Close"
                                                                  style: UIBarButtonItemStylePlain
@@ -115,18 +140,37 @@
         return nil;
     }
     
-    // All other annotation's on the screen will be <RatingAnnotation>.
-    RatingAnnotation *pin = (RatingAnnotation*)annotation;
-    RatingAnnotationView *pinView = (RatingAnnotationView*)[map dequeueReusableAnnotationViewWithIdentifier: pin.identifier];
+    NSLog( @"Returning view for annotation" );
     
-    // If this pin view doesn't exist already, create it!
-    if( !pinView ) {
-        pinView = [[RatingAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier: pin.identifier];
+    MKAnnotationView *pinView = nil;
+    
+    if( [mapViewOptionsControl selectedSegmentIndex] == MAP_VIEW_PINS ) {
+    
+        // All other annotation's on the screen will be <RatingAnnotation>.
+        RatingAnnotation *pin = (RatingAnnotation*)annotation;
+        pinView = [map dequeueReusableAnnotationViewWithIdentifier: pin.identifier];
+        
+        // If this pin view doesn't exist already, create it!
+        if( !pinView ) {
+            pinView = [[RatingAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier: pin.identifier];
+        }
+    
+    } else {
+        
+        static NSString *const kHeatmapAnnotationId = @"HeatmapAnnotation";
+        
+        // All other annotation's on the screen will be <RatingAnnotation>.
+        pinView = [map dequeueReusableAnnotationViewWithIdentifier: @"HEATMAP"];
+        
+        // If this pin view doesn't exist already, create it!
+        if( !pinView ) {
+            pinView = [[HeatmapAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier: kHeatmapAnnotationId ];
+        }
+        
     }
     
     // Setup the views/etc. for this annotation
     [pinView setAnnotation:annotation];
-    
     
     return pinView;
     

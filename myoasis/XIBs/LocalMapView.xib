@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="annotationDetail" destination="cHI-gn-YHF" id="jyd-RC-Wgp"/>
                 <outlet property="mapView" destination="UOZ-Av-NPA" id="CPt-ln-SOz"/>
+                <outlet property="mapViewOptionsControl" destination="N4u-mx-hnY" id="BWi-Ki-fhF"/>
                 <outlet property="view" destination="1" id="e0D-gV-2dy"/>
             </connections>
         </placeholder>
@@ -24,6 +25,18 @@
                         <outlet property="delegate" destination="-1" id="dOF-Xk-LAJ"/>
                     </connections>
                 </mapView>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="N4u-mx-hnY">
+                    <rect key="frame" x="62" y="80" width="196" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <segments>
+                        <segment title="Pins"/>
+                        <segment title="Heatmap"/>
+                    </segments>
+                    <color key="tintColor" red="1" green="0.50196078431372548" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <action selector="mapViewOptionSelected:" destination="-1" eventType="valueChanged" id="6LO-iY-z7q"/>
+                    </connections>
+                </segmentedControl>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
