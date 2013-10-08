@@ -28,6 +28,9 @@
         [self setEnabled:NO];
         [self setCanShowCallout:NO];
         
+        // TODO: Determine alpha based on the annotation/density/time
+        self.alpha = 0.5;
+        
     }
     
     return self;

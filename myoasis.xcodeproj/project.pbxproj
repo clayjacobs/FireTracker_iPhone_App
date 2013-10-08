@@ -11,6 +11,7 @@
 		6217B7A2180359BD00194120 /* HeatmapAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6217B7A1180359BD00194120 /* HeatmapAnnotationView.m */; };
 		6217B7A418035AB100194120 /* heatmap.png in Resources */ = {isa = PBXBuildFile; fileRef = 6217B7A318035AB100194120 /* heatmap.png */; };
 		626B424917FD37600088405A /* RatingDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 626B424817FD37600088405A /* RatingDetailView.m */; };
+		629EE1011804C19400DF50DB /* libkeep-sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 629EE1001804C19400DF50DB /* libkeep-sdk.a */; };
 		62DC117B17FB2F76006FB4A4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DC117A17FB2F76006FB4A4 /* Foundation.framework */; };
 		62DC117D17FB2F76006FB4A4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DC117C17FB2F76006FB4A4 /* CoreGraphics.framework */; };
 		62DC117F17FB2F76006FB4A4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DC117E17FB2F76006FB4A4 /* UIKit.framework */; };
@@ -60,6 +61,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		629EE1071804C25000DF50DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 629EE1021804C25000DF50DB /* keep-sdk.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 629EE0CF1804B79100DF50DB;
+			remoteInfo = "keep-sdk";
+		};
+		629EE1091804C25000DF50DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 629EE1021804C25000DF50DB /* keep-sdk.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 629EE0DF1804B79200DF50DB;
+			remoteInfo = "keep-sdkTests";
+		};
+		629EE10B1804C2CF00DF50DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 629EE1021804C25000DF50DB /* keep-sdk.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 629EE0CE1804B79100DF50DB;
+			remoteInfo = "keep-sdk";
+		};
 		62DC119717FB2F76006FB4A4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 62DC116F17FB2F76006FB4A4 /* Project object */;
@@ -76,6 +98,10 @@
 		6217B7A318035AB100194120 /* heatmap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heatmap.png; sourceTree = "<group>"; };
 		626B424717FD37600088405A /* RatingDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RatingDetailView.h; path = Views/RatingDetailView.h; sourceTree = "<group>"; };
 		626B424817FD37600088405A /* RatingDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RatingDetailView.m; path = Views/RatingDetailView.m; sourceTree = "<group>"; };
+		629EE0F81804B7BD00DF50DB /* libkeep-sdk.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libkeep-sdk.a"; path = "keep-sdk/build/Debug-iphoneos/libkeep-sdk.a"; sourceTree = "<group>"; };
+		629EE0FC1804BACA00DF50DB /* libkeep-sdk.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libkeep-sdk.a"; path = "keep-sdk/build/Debug-iphoneos/libkeep-sdk.a"; sourceTree = "<group>"; };
+		629EE1001804C19400DF50DB /* libkeep-sdk.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libkeep-sdk.a"; path = "keep-sdk/build/Debug-iphoneos/libkeep-sdk.a"; sourceTree = "<group>"; };
+		629EE1021804C25000DF50DB /* keep-sdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "keep-sdk.xcodeproj"; path = "keep-sdk/keep-sdk.xcodeproj"; sourceTree = "<group>"; };
 		62DC117717FB2F76006FB4A4 /* myoasis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myoasis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62DC117A17FB2F76006FB4A4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		62DC117C17FB2F76006FB4A4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -139,6 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				629EE1011804C19400DF50DB /* libkeep-sdk.a in Frameworks */,
 				62DC117D17FB2F76006FB4A4 /* CoreGraphics.framework in Frameworks */,
 				62DC117F17FB2F76006FB4A4 /* UIKit.framework in Frameworks */,
 				62DC11B117FB3923006FB4A4 /* MapKit.framework in Frameworks */,
@@ -171,9 +198,19 @@
 			name = Annotations;
 			sourceTree = "<group>";
 		};
+		629EE1031804C25000DF50DB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				629EE1081804C25000DF50DB /* libkeep-sdk.a */,
+				629EE10A1804C25000DF50DB /* keep-sdkTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		62DC116E17FB2F76006FB4A4 = {
 			isa = PBXGroup;
 			children = (
+				629EE1021804C25000DF50DB /* keep-sdk.xcodeproj */,
 				62DC118017FB2F76006FB4A4 /* myoasis */,
 				62DC119917FB2F76006FB4A4 /* myoasisTests */,
 				62DC117917FB2F76006FB4A4 /* Frameworks */,
@@ -194,6 +231,9 @@
 		62DC117917FB2F76006FB4A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				629EE1001804C19400DF50DB /* libkeep-sdk.a */,
+				629EE0FC1804BACA00DF50DB /* libkeep-sdk.a */,
+				629EE0F81804B7BD00DF50DB /* libkeep-sdk.a */,
 				62DC11B017FB3923006FB4A4 /* MapKit.framework */,
 				62DC117A17FB2F76006FB4A4 /* Foundation.framework */,
 				62DC117C17FB2F76006FB4A4 /* CoreGraphics.framework */,
@@ -372,6 +412,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				629EE10C1804C2CF00DF50DB /* PBXTargetDependency */,
 			);
 			name = myoasis;
 			productName = myoasis;
@@ -428,6 +469,12 @@
 			mainGroup = 62DC116E17FB2F76006FB4A4;
 			productRefGroup = 62DC117817FB2F76006FB4A4 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 629EE1031804C25000DF50DB /* Products */;
+					ProjectRef = 629EE1021804C25000DF50DB /* keep-sdk.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				62DC117617FB2F76006FB4A4 /* myoasis */,
@@ -435,6 +482,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		629EE1081804C25000DF50DB /* libkeep-sdk.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libkeep-sdk.a";
+			remoteRef = 629EE1071804C25000DF50DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		629EE10A1804C25000DF50DB /* keep-sdkTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "keep-sdkTests.xctest";
+			remoteRef = 629EE1091804C25000DF50DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		62DC117517FB2F76006FB4A4 /* Resources */ = {
@@ -546,6 +610,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		629EE10C1804C2CF00DF50DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "keep-sdk";
+			targetProxy = 629EE10B1804C2CF00DF50DB /* PBXContainerItemProxy */;
+		};
 		62DC119817FB2F76006FB4A4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 62DC117617FB2F76006FB4A4 /* myoasis */;
@@ -654,6 +723,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "myoasis/myoasis-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/AwesomeMenu\"",
+					"\"${PODS_ROOT}/Headers/JSONKit\"",
+				);
 				INFOPLIST_FILE = "myoasis/myoasis-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -670,6 +745,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "myoasis/myoasis-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/AwesomeMenu\"",
+					"\"${PODS_ROOT}/Headers/JSONKit\"",
+					"\"$(BUILT_PRODUCTS_DIR)/include\"",
+				);
 				INFOPLIST_FILE = "myoasis/myoasis-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";

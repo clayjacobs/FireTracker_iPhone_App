@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "keep-sdk/keep_sdk.h"
+
 #import "RatingMenuView.h"
 #import "ImageTaggerViewController.h"
 
@@ -19,6 +21,8 @@
     ImageTaggerViewController *imageTagger;
     
     RatingMenuView *menuView;
+    
+    KeepSDK *keep;
     
     int currentTag;
     
