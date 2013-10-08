@@ -8,6 +8,26 @@
 
 #import "keep_sdk.h"
 
-@implementation keep_sdk
+@implementation KeepSDK
+
+- (id) initWithUser:(NSString *)user andKey:(NSString *)key {
+    
+    self = [super init];
+    if( self ) {
+        
+        self.user = user;
+        self.key  = key;
+        
+    }
+    
+    return self;
+}
+
+- (NSArray*) repoList {
+    
+    NSLog( @"Grabbing repo list" );
+    
+    return nil;
+}
 
 @end

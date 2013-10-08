@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface keep_sdk : NSObject
+@interface KeepSDK : NSObject
+
+@property (nonatomic, copy) NSString *user;
+@property (nonatomic, copy) NSString *key;
+
+- (id) initWithUser: (NSString*)user andKey: (NSString*)key;
+
+- (NSArray*) repoList;
 
 @end

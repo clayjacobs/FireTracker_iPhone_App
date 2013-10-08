@@ -8,14 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		629EE0D31804B79100DF50DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629EE0D21804B79100DF50DB /* Foundation.framework */; };
-		629EE0D81804B79100DF50DB /* keep_sdk.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 629EE0D71804B79100DF50DB /* keep_sdk.h */; };
+		629EE0D81804B79100DF50DB /* keep_sdk.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 629EE0D71804B79100DF50DB /* keep_sdk.h */; };
 		629EE0DA1804B79100DF50DB /* keep_sdk.m in Sources */ = {isa = PBXBuildFile; fileRef = 629EE0D91804B79100DF50DB /* keep_sdk.m */; };
 		629EE0E11804B79200DF50DB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629EE0E01804B79200DF50DB /* XCTest.framework */; };
 		629EE0E21804B79200DF50DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629EE0D21804B79100DF50DB /* Foundation.framework */; };
-		629EE0E41804B79200DF50DB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629EE0E31804B79200DF50DB /* UIKit.framework */; };
 		629EE0E71804B79200DF50DB /* libkeep-sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 629EE0CF1804B79100DF50DB /* libkeep-sdk.a */; };
-		629EE0ED1804B79200DF50DB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 629EE0EB1804B79200DF50DB /* InfoPlist.strings */; };
-		629EE0EF1804B79200DF50DB /* keep_sdkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 629EE0EE1804B79200DF50DB /* keep_sdkTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,14 +26,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		629EE0CD1804B79100DF50DB /* CopyFiles */ = {
+		629EE0CD1804B79100DF50DB /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
+			buildActionMask = 12;
+			dstPath = "include/$(TARGET_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				629EE0D81804B79100DF50DB /* keep_sdk.h in CopyFiles */,
+				629EE0D81804B79100DF50DB /* keep_sdk.h in Copy Files */,
 			);
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -49,10 +47,6 @@
 		629EE0D91804B79100DF50DB /* keep_sdk.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = keep_sdk.m; sourceTree = "<group>"; };
 		629EE0DF1804B79200DF50DB /* keep-sdkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "keep-sdkTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		629EE0E01804B79200DF50DB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		629EE0E31804B79200DF50DB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		629EE0EA1804B79200DF50DB /* keep-sdkTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "keep-sdkTests-Info.plist"; sourceTree = "<group>"; };
-		629EE0EC1804B79200DF50DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		629EE0EE1804B79200DF50DB /* keep_sdkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = keep_sdkTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +63,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				629EE0E11804B79200DF50DB /* XCTest.framework in Frameworks */,
-				629EE0E41804B79200DF50DB /* UIKit.framework in Frameworks */,
 				629EE0E21804B79200DF50DB /* Foundation.framework in Frameworks */,
 				629EE0E71804B79200DF50DB /* libkeep-sdk.a in Frameworks */,
 			);
@@ -82,7 +75,6 @@
 			isa = PBXGroup;
 			children = (
 				629EE0D41804B79100DF50DB /* keep-sdk */,
-				629EE0E81804B79200DF50DB /* keep-sdkTests */,
 				629EE0D11804B79100DF50DB /* Frameworks */,
 				629EE0D01804B79100DF50DB /* Products */,
 			);
@@ -102,7 +94,6 @@
 			children = (
 				629EE0D21804B79100DF50DB /* Foundation.framework */,
 				629EE0E01804B79200DF50DB /* XCTest.framework */,
-				629EE0E31804B79200DF50DB /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -125,24 +116,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		629EE0E81804B79200DF50DB /* keep-sdkTests */ = {
-			isa = PBXGroup;
-			children = (
-				629EE0EE1804B79200DF50DB /* keep_sdkTests.m */,
-				629EE0E91804B79200DF50DB /* Supporting Files */,
-			);
-			path = "keep-sdkTests";
-			sourceTree = "<group>";
-		};
-		629EE0E91804B79200DF50DB /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				629EE0EA1804B79200DF50DB /* keep-sdkTests-Info.plist */,
-				629EE0EB1804B79200DF50DB /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -152,7 +125,7 @@
 			buildPhases = (
 				629EE0CB1804B79100DF50DB /* Sources */,
 				629EE0CC1804B79100DF50DB /* Frameworks */,
-				629EE0CD1804B79100DF50DB /* CopyFiles */,
+				629EE0CD1804B79100DF50DB /* Copy Files */,
 			);
 			buildRules = (
 			);
@@ -213,7 +186,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				629EE0ED1804B79200DF50DB /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,7 +204,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				629EE0EF1804B79200DF50DB /* keep_sdkTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,17 +216,6 @@
 			targetProxy = 629EE0E51804B79200DF50DB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		629EE0EB1804B79200DF50DB /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				629EE0EC1804B79200DF50DB /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		629EE0F01804B79200DF50DB /* Debug */ = {
@@ -291,7 +251,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -323,6 +283,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -336,6 +297,7 @@
 				GCC_PREFIX_HEADER = "keep-sdk/keep-sdk-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "“$(TARGET_BUILD_DIR)/include/$(TARGET_NAME)\"";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -348,6 +310,7 @@
 				GCC_PREFIX_HEADER = "keep-sdk/keep-sdk-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "“$(TARGET_BUILD_DIR)/include/$(TARGET_NAME)\"";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -409,6 +372,7 @@
 				629EE0F41804B79200DF50DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		629EE0F51804B79200DF50DB /* Build configuration list for PBXNativeTarget "keep-sdkTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +381,7 @@
 				629EE0F71804B79200DF50DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
