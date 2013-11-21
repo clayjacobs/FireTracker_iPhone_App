@@ -35,7 +35,7 @@
     
     // Initialize KEEP SDK
     keep = [[KeepSDK alloc] initWithUser:@"admin" andKey:@"35f7d1fb1890bdc05f9988d01cf1dcab"];
-    [keep repoList];
+    [keep fetchData];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     

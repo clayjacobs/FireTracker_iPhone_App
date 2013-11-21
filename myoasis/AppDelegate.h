@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "keep-sdk/keep_sdk.h"
+#import "keep-sdk/keep.h"
 
 #import "RatingMenuView.h"
 #import "ImageTaggerViewController.h"
