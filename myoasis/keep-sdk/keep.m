@@ -18,12 +18,14 @@
 #if TARGET_IPHONE_SIMULATOR
 
     #define SERVER          @"localhost:8000/api/v1/"
-    #define DATA_LIST       @"data/51b7c05480a9760067a3f956/"
+    #define DATA_LIST       @"data/528e4ceb80a976032b6d7941/"
+    #define DATA_POST       @"repos/528e4ceb80a976032b6d7941/"
 
 #else
 
-    #define SERVER          @"keep.distributedhealth.org/api/v1/"
-    #define DATA_LIST       @"data/51ba78daab2fda2874b1ce90"
+    #define SERVER          @"myoasis.distributedhealth.org/api/v1/"
+    #define DATA_LIST       @"data/529517db2b0d035aa1c92754/"
+    #define DATA_POST       @"repos/529517db2b0d035aa1c92754/"
 
 #endif
 
@@ -84,10 +86,39 @@
 
 }
 
+- (void) postData: (NSDictionary*)textData andImages: (NSDictionary*)imageData {
+    
+    [manager POST: [self buildUrl:DATA_POST]
+       parameters: baseParams
+       constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    
+        for( NSString* key in textData ) {
+            [formData appendPartWithFormData: [[textData objectForKey:key] dataUsingEncoding:NSUTF8StringEncoding]
+                                        name: key];
+        }
+    
+        for( NSString* key in imageData ) {
+    
+            NSData *image = UIImageJPEGRepresentation( [imageData objectForKey:key], 0.5 );
+            
+            [formData appendPartWithFileData: image
+                                        name: key
+                                    fileName: @"photo.jpg"
+                                    mimeType: @"image/jpeg" ];
+        }
+   
+     }    success:^(AFHTTPRequestOperation *operation, id responseObject) {
+
+     }    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         
+     }];
+    
+}
+
 - (void) fetchDataWithBBox: (NSString*) bbox {
     
     NSMutableDictionary *fetchParams = [[NSMutableDictionary alloc] initWithDictionary: baseParams];
-    [fetchParams setObject: @"Location" forKey: @"geofield"];
+    [fetchParams setObject: @"location" forKey: @"geofield"];
     [fetchParams setObject: bbox forKey: @"bbox" ];
 
     [manager GET: [self buildUrl:DATA_LIST]

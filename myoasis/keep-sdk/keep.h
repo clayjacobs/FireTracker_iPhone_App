@@ -30,6 +30,7 @@
 
 // List the data under a current directory
 - (void) fetchData;
+- (void) postData: (NSDictionary*) textData andImages: (NSDictionary*) imageData;
 
 - (void) fetchDataWithBBox: (NSString*) bbox;
 
