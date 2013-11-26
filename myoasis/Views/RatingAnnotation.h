@@ -15,13 +15,20 @@
     NSString *title;
     NSString *subtitle;
     
+    // Whether this is a local annotation (thus using the
+    // taggedImage instead of taggedImageURL)
+    BOOL isLocal;
+    
     // Custom annotation fields.
+    NSURL *taggedImageURL;
     UIImage *taggedImage;
     int tag;
     
 }
 
 @property (assign) int tag;
+@property (assign) BOOL isLocal;
+@property (nonatomic, strong) NSURL *taggedImageURL;
 @property (nonatomic, strong) UIImage *taggedImage;
 
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;

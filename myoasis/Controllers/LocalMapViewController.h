@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
+#import "keep.h"
 #import "RatingDetailView.h"
 
 
-@interface LocalMapViewController : UIViewController<MKMapViewDelegate> {
+@interface LocalMapViewController : UIViewController<MKMapViewDelegate, KeepSDKDelegate> {
     
     IBOutlet MKMapView *mapView;
     IBOutlet RatingDetailView *annotationDetail;
@@ -26,6 +27,7 @@
 @property (nonatomic, retain) CLLocation* location;
 
 - (void) addAnnotation: (int) tagType withImage: (UIImage*) taggedImage;
+- (NSString*) boundingBox;
 
 - (IBAction) mapViewOptionSelected: (id)sender;
 

@@ -14,11 +14,21 @@
 #import "RatingAnnotationView.h"
 #import "HeatmapAnnotationView.h"
 
+#import "KeepData.h"
+
 #define MAP_VIEW_PINS       0
 #define MAP_VIEW_HEATMAP    1
 
+// The distance a user has to scroll before we update our annotations for the screen.
+#define SCROLL_UPDATE_DISTANCE      80.00
 
-@interface LocalMapViewController ()
+
+@interface LocalMapViewController () {
+    
+    NSMutableArray *keepAnnotations;
+    CLLocationCoordinate2D lastMapLocation;
+    
+}
 
 - (void) showCloseDetailViewButton;
 - (void) hideCloseDetailViewButton;
@@ -38,6 +48,9 @@
         // Track the user's location.
         [mapView setUserTrackingMode: MKUserTrackingModeFollow];
         [self setTitle:@"My Oasis"];
+        
+        keepAnnotations = [[NSMutableArray alloc] init];
+        lastMapLocation = mapView.centerCoordinate;
         
 //        UIBarButtonItem *homeMenu = [[UIBarButtonItem alloc] initWithTitle: @"Menu"
 //                                                                     style: UIBarButtonItemStylePlain
@@ -61,12 +74,35 @@
 - (void) addAnnotation: (int)tagType withImage:(UIImage*)taggedImage {
     
     RatingAnnotation *annotation = [[RatingAnnotation alloc] init];
+    [annotation setIsLocal: YES];
     [annotation setCoordinate: self.location.coordinate];
     [annotation setTag: tagType];
     [annotation setTaggedImage: taggedImage];
-
     
     [mapView addAnnotation: annotation];
+    
+}
+
+- (NSString*) boundingBox {
+    
+    // Find the corners of the map
+    CGPoint nePoint = CGPointMake( mapView.bounds.origin.x + mapView.bounds.size.width, mapView.bounds.origin.y );
+    CGPoint swPoint = CGPointMake( mapView.bounds.origin.x, mapView.bounds.origin.y + mapView.bounds.size.height );
+    
+    //Then transform those point into lat,lng values
+    CLLocationCoordinate2D neCoord;
+    neCoord = [mapView convertPoint:nePoint toCoordinateFromView:mapView];
+    
+    CLLocationCoordinate2D swCoord;
+    swCoord = [mapView convertPoint:swPoint toCoordinateFromView:mapView];
+    
+    NSString *bbox = [NSString stringWithFormat:@"%f,%f,%f,%f",
+                                                swCoord.longitude, swCoord.latitude,
+                                                neCoord.longitude, neCoord.latitude];
+    
+    NSLog( @"BBOX: %@", bbox );
+    
+    return bbox;
     
 }
 
@@ -118,7 +154,83 @@
 }
 
 #pragma mark -
+#pragma mark KeepSDKDelegate functions
+
+- (void) didFetchData: (NSArray*) data {
+    
+    if( data == (id)[NSNull null] ) {
+        return;
+    }
+    
+    // Delete the old annotations
+    for( RatingAnnotation *annotation in keepAnnotations ) {
+        [mapView removeAnnotation: annotation];
+    }
+    
+    [keepAnnotations removeAllObjects];
+    
+    for( NSDictionary *datum in data ) {
+        
+        NSDictionary *dataRow = [datum valueForKey: @"data"];
+        
+        NSDictionary *geopoint = [dataRow valueForKey: @"location"];
+        
+        CLLocationDegrees lng = [(NSNumber*)[geopoint valueForKey:@"coordinates"][0] doubleValue];
+        CLLocationDegrees lat = [(NSNumber*)[geopoint valueForKey:@"coordinates"][1] doubleValue];
+   
+        RatingAnnotation *annotation = [[RatingAnnotation alloc] init];
+        [annotation setIsLocal: NO];
+        [annotation setCoordinate: CLLocationCoordinate2DMake( lat, lng )];
+        [annotation setTag: [dataRow valueForKey: @"rating"] ];
+        
+        NSURL *imageURL = [NSURL URLWithString: [dataRow valueForKey: @"photo"] ];
+        [annotation setTaggedImageURL: imageURL];
+        
+        [keepAnnotations addObject: annotation];
+        [mapView addAnnotation: annotation];
+
+    }
+}
+
+#pragma mark -
 #pragma mark MKMapViewDelegate functions
+
+- (void) mapView:(MKMapView *)map regionDidChangeAnimated:(BOOL)animated {
+    
+    MKCoordinateRegion mapRegion;
+    mapRegion.center = map.centerCoordinate;
+    
+    double lat = mapRegion.center.latitude;
+    double lng = mapRegion.center.longitude;
+    
+    if( isnan( lat ) || isnan( lng ) ) {
+        return;
+    }
+    
+    NSLog( @"%f -> %f", lastMapLocation.latitude, lat );
+    
+    CLLocation *before = [[CLLocation alloc] initWithLatitude: lastMapLocation.latitude
+                                                    longitude: lastMapLocation.longitude];
+
+    CLLocation *after = [[CLLocation alloc] initWithLatitude: lat
+                                                   longitude: lng ];
+    
+    CLLocationDistance distance = [before distanceFromLocation: after];
+    
+    NSLog( @"Scrolled distance: %@", [NSString stringWithFormat: @"%.02f", distance ] );
+    
+    if( distance > SCROLL_UPDATE_DISTANCE ) {
+        
+        NSLog( @"Refreshing annotation bounding box" );
+        KeepSDK *keep = [[AppDelegate instance] keep];
+        [keep fetchDataWithBBox: [self boundingBox]];
+        
+    }
+    
+    lastMapLocation.latitude = lat;
+    lastMapLocation.longitude = lng;
+    
+}
 
 - (void) mapView:(MKMapView *)map didUpdateUserLocation:(MKUserLocation *)userLocation {
     
@@ -129,7 +241,7 @@
     region.span   = MKCoordinateSpanMake( 0.05, 0.05 );
     
     region = [map regionThatFits:region];
-    [map setRegion:region animated:YES];
+    [map setRegion:region animated:NO];
     
 }
 
@@ -139,8 +251,6 @@
     if( annotation == map.userLocation ) {
         return nil;
     }
-    
-    NSLog( @"Returning view for annotation" );
     
     MKAnnotationView *pinView = nil;
     

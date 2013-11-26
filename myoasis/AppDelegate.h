@@ -31,6 +31,9 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UINavigationController *rootViewController;
 
+// Readonly variables
+@property (nonatomic, readonly) KeepSDK *keep;
+
 + (AppDelegate*) instance;
 
 - (void) addAnnotation: (UIImage*) taggedImage;

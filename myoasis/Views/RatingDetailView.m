@@ -7,6 +7,7 @@
 //
 
 #import "RatingDetailView.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation RatingDetailView
 
@@ -24,7 +25,11 @@
 
 - (void) willMoveToSuperview:(UIView *)newSuperview {
     
-    taggedImage.image = annotation.taggedImage;
+    if( annotation.isLocal ) {
+        taggedImage.image = annotation.taggedImage;
+    } else {
+        [taggedImage setImageWithURL: annotation.taggedImageURL];
+    }
 }
 
 /*

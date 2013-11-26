@@ -10,6 +10,20 @@
 #import "AppDelegate.h"
 
 #import "LocalMapViewController.h"
+#import "TargetConditionals.h"
+
+#if TARGET_IPHONE_SIMULATOR
+
+    #define KEEP_USER   @"admin"
+    #define KEEP_KEY    @"35f7d1fb1890bdc05f9988d01cf1dcab"
+
+#else
+
+    #define KEEP_USER   @"myoasis"
+    #define KEEP_KEY    @"97372f138868fff37f7e1167b93945ca"
+
+#endif
+
 
 
 @interface AppDelegate () {
@@ -22,7 +36,7 @@
 
 @implementation AppDelegate
 
-@synthesize rootViewController;
+@synthesize rootViewController, keep;
 
 + (AppDelegate*) instance {
     return (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -34,8 +48,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     // Initialize KEEP SDK
-    keep = [[KeepSDK alloc] initWithUser:@"admin" andKey:@"35f7d1fb1890bdc05f9988d01cf1dcab"];
-    [keep fetchData];
+    keep = [[KeepSDK alloc] initWithUser: KEEP_USER andKey: KEEP_KEY];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
@@ -47,6 +60,7 @@
    
     //--// Load up our map view.
     mapView = [[LocalMapViewController alloc] initWithNibName:@"LocalMapView" bundle:nil];
+    keep.delegate = mapView;
     
     [rootViewController addChildViewController:mapView];
 
@@ -102,7 +116,38 @@
 #pragma mark Public functions
 
 - (void) addAnnotation: (UIImage*) taggedImage {
+    
+    // Add image to map
     [mapView addAnnotation: currentTag withImage: taggedImage];
+    
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+    
+    // User's UUID
+    // See Apple Docs for identifierForVendor for more info on how
+    // this identifier is created.
+    [data setObject: [[[UIDevice currentDevice] identifierForVendor] UUIDString]
+             forKey: @"uuid" ];
+   
+    // User's current location
+    CLLocationCoordinate2D coords = [[mapView location] coordinate];
+    [data setObject: [NSString stringWithFormat: @"%f,%f,%f", coords.longitude,
+                                                              coords.latitude,
+                                                              mapView.location.altitude]
+             forKey: @"location" ];
+    
+    // Rating
+    [data setObject: [NSString stringWithFormat:@"%d", currentTag]
+             forKey: @"rating"];
+    
+    // Image data
+    NSMutableDictionary *images = [[NSMutableDictionary alloc] init];
+    [images setObject: taggedImage
+               forKey: @"photo" ];
+    
+    // Upload image to server
+    [self.keep postData: data
+              andImages: images];
+    
 }
 
 - (void) showHomeMenu:(id)sender {

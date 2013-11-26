@@ -12,7 +12,7 @@
 
 @synthesize coordinate, title, subtitle;
 
-@synthesize tag, taggedImage;
+@synthesize tag, taggedImageURL, taggedImage, isLocal;
 
 - (NSString*) identifier {
     

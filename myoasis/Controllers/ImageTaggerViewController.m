@@ -42,7 +42,7 @@
 }
 
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    
+
     UIImage *taggedImage = (UIImage*)[info valueForKey: UIImagePickerControllerOriginalImage];
     NSLog( @"IMAGE: %@", [taggedImage description] );
 
