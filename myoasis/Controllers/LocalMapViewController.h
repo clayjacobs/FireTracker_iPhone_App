@@ -18,6 +18,7 @@
     IBOutlet MKMapView *mapView;
     IBOutlet RatingDetailView *annotationDetail;
     IBOutlet UISegmentedControl *mapViewOptionsControl;
+    IBOutlet UIButton *recenterButton;
     
     // User's current location
     CLLocation *location;
@@ -30,5 +31,6 @@
 - (NSString*) boundingBox;
 
 - (IBAction) mapViewOptionSelected: (id)sender;
+- (IBAction) recenterMap:(id)sender;
 
 @end

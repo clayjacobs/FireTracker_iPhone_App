@@ -28,7 +28,8 @@
     if( annotation.isLocal ) {
         taggedImage.image = annotation.taggedImage;
     } else {
-        [taggedImage setImageWithURL: annotation.taggedImageURL];
+        [taggedImage setImageWithURL: annotation.taggedImageURL
+                    placeholderImage: [UIImage imageNamed:@"loading"]];
     }
 }
 

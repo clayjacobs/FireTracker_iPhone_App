@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocalMapViewController">
@@ -10,6 +10,7 @@
                 <outlet property="annotationDetail" destination="cHI-gn-YHF" id="jyd-RC-Wgp"/>
                 <outlet property="mapView" destination="UOZ-Av-NPA" id="CPt-ln-SOz"/>
                 <outlet property="mapViewOptionsControl" destination="N4u-mx-hnY" id="BWi-Ki-fhF"/>
+                <outlet property="recenterButton" destination="Tcf-6e-h9w" id="q1E-Dh-zaK"/>
                 <outlet property="view" destination="1" id="e0D-gV-2dy"/>
             </connections>
         </placeholder>
@@ -25,8 +26,8 @@
                         <outlet property="delegate" destination="-1" id="dOF-Xk-LAJ"/>
                     </connections>
                 </mapView>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="N4u-mx-hnY">
-                    <rect key="frame" x="62" y="80" width="196" height="29"/>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="N4u-mx-hnY">
+                    <rect key="frame" x="80" y="81" width="160" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <segments>
@@ -38,15 +39,30 @@
                         <action selector="mapViewOptionSelected:" destination="-1" eventType="valueChanged" id="6LO-iY-z7q"/>
                     </connections>
                 </segmentedControl>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tcf-6e-h9w">
+                    <rect key="frame" x="14" y="70" width="52" height="52"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="recenter.png" backgroundImage="bg-rating-item.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="recenterMap:" destination="-1" eventType="touchDown" id="NEe-Tb-ZoY"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="UOZ-Av-NPA" secondAttribute="bottom" id="Mlv-xg-e7J"/>
                 <constraint firstItem="UOZ-Av-NPA" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="PfJ-Xz-Hrh"/>
+                <constraint firstItem="UOZ-Av-NPA" firstAttribute="top" secondItem="1" secondAttribute="top" id="QYq-O8-pAm"/>
+                <constraint firstItem="N4u-mx-hnY" firstAttribute="top" secondItem="1" secondAttribute="top" constant="81" id="RJG-k7-Rid"/>
                 <constraint firstAttribute="trailing" secondItem="UOZ-Av-NPA" secondAttribute="trailing" id="VY7-g4-uxq"/>
-                <constraint firstItem="UOZ-Av-NPA" firstAttribute="top" secondItem="1" secondAttribute="top" id="zPO-WJ-nRe"/>
+                <constraint firstItem="Tcf-6e-h9w" firstAttribute="top" secondItem="1" secondAttribute="top" constant="70" id="hbE-ik-bln"/>
+                <constraint firstItem="N4u-mx-hnY" firstAttribute="leading" secondItem="Tcf-6e-h9w" secondAttribute="trailing" constant="14" id="jbF-pE-iEv"/>
+                <constraint firstAttribute="trailing" secondItem="N4u-mx-hnY" secondAttribute="trailing" constant="80" id="p2j-sq-bWh"/>
+                <constraint firstItem="Tcf-6e-h9w" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="14" id="xOF-aa-W37"/>
             </constraints>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
@@ -54,50 +70,12 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="200" image="sad.png" translatesAutoresizingMaskIntoConstraints="NO" id="yjx-1F-rg4">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="472"/>
+                <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="200" fixedFrame="YES" image="sad.png" translatesAutoresizingMaskIntoConstraints="NO" id="yjx-1F-rg4">
+                    <rect key="frame" x="0.0" y="62" width="320" height="459"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ecp-2n-DrX" userLabel="Comments">
-                    <rect key="frame" x="144" y="496" width="32" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" image="comment.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsL-gE-awr" userLabel="Thumbs Down">
-                    <rect key="frame" x="58" y="496" width="32" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" image="thumbs-down.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d0z-jm-JLO" userLabel="Thumbs Up">
-                    <rect key="frame" x="230" y="496" width="32" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" image="thumbs-up.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="Ecp-2n-DrX" firstAttribute="top" secondItem="yjx-1F-rg4" secondAttribute="bottom" constant="24" id="5Dc-SQ-FZN"/>
-                <constraint firstItem="d0z-jm-JLO" firstAttribute="top" secondItem="yjx-1F-rg4" secondAttribute="bottom" constant="24" id="8uL-A3-KSq"/>
-                <constraint firstItem="yjx-1F-rg4" firstAttribute="top" secondItem="cHI-gn-YHF" secondAttribute="top" id="WYc-6E-wrb"/>
-                <constraint firstItem="yjx-1F-rg4" firstAttribute="centerX" secondItem="Ecp-2n-DrX" secondAttribute="centerX" id="YGM-jk-yRu"/>
-                <constraint firstItem="d0z-jm-JLO" firstAttribute="leading" secondItem="Ecp-2n-DrX" secondAttribute="trailing" constant="54" id="Zp8-Ys-aU7"/>
-                <constraint firstAttribute="bottom" secondItem="d0z-jm-JLO" secondAttribute="bottom" constant="40" id="hVg-DJ-RbL"/>
-                <constraint firstItem="dsL-gE-awr" firstAttribute="top" secondItem="yjx-1F-rg4" secondAttribute="bottom" constant="24" id="m7U-8t-mNc"/>
-                <constraint firstAttribute="trailing" secondItem="yjx-1F-rg4" secondAttribute="trailing" id="oHg-6e-tbW"/>
-                <constraint firstAttribute="bottom" secondItem="Ecp-2n-DrX" secondAttribute="bottom" constant="40" id="qxt-14-Ucz"/>
-                <constraint firstAttribute="bottom" secondItem="dsL-gE-awr" secondAttribute="bottom" constant="40" id="tDh-X4-Tzd"/>
-                <constraint firstItem="yjx-1F-rg4" firstAttribute="leading" secondItem="cHI-gn-YHF" secondAttribute="leading" id="v3g-rb-zXu"/>
-                <constraint firstItem="Ecp-2n-DrX" firstAttribute="leading" secondItem="dsL-gE-awr" secondAttribute="trailing" constant="54" id="veN-bg-0Jm"/>
-            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -107,9 +85,8 @@
         </view>
     </objects>
     <resources>
-        <image name="comment.png" width="32" height="32"/>
+        <image name="bg-rating-item.png" width="52" height="52"/>
+        <image name="recenter.png" width="24" height="24"/>
         <image name="sad.png" width="40" height="40"/>
-        <image name="thumbs-down.png" width="32" height="32"/>
-        <image name="thumbs-up.png" width="32" height="32"/>
     </resources>
 </document>

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6217B7A2180359BD00194120 /* HeatmapAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6217B7A1180359BD00194120 /* HeatmapAnnotationView.m */; };
+		621B7726184E5F4D0006B375 /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 621B7725184E5F4D0006B375 /* loading.png */; };
 		6231FDB51846B917001602ED /* recenter.png in Resources */ = {isa = PBXBuildFile; fileRef = 6231FDB31846B917001602ED /* recenter.png */; };
 		6231FDB61846B917001602ED /* recenter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6231FDB41846B917001602ED /* recenter@2x.png */; };
 		626B424917FD37600088405A /* RatingDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 626B424817FD37600088405A /* RatingDetailView.m */; };
@@ -85,6 +86,7 @@
 /* Begin PBXFileReference section */
 		6217B7A0180359BD00194120 /* HeatmapAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeatmapAnnotationView.h; path = Views/HeatmapAnnotationView.h; sourceTree = "<group>"; };
 		6217B7A1180359BD00194120 /* HeatmapAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeatmapAnnotationView.m; path = Views/HeatmapAnnotationView.m; sourceTree = "<group>"; };
+		621B7725184E5F4D0006B375 /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
 		6231FDB31846B917001602ED /* recenter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recenter.png; sourceTree = "<group>"; };
 		6231FDB41846B917001602ED /* recenter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recenter@2x.png"; sourceTree = "<group>"; };
 		626B424717FD37600088405A /* RatingDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RatingDetailView.h; path = Views/RatingDetailView.h; sourceTree = "<group>"; };
@@ -385,6 +387,7 @@
 		62DC11BE17FB565A006FB4A4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				621B7725184E5F4D0006B375 /* loading.png */,
 				6276593218455247002D4805 /* App Icons */,
 				62BE6524184CFEB8007424C4 /* Rating Menu */,
 				62EC4F9E184CF9C8007AE306 /* Launch Images */,
@@ -502,6 +505,7 @@
 				62765920184551A6002D4805 /* biohazard@2x.png in Resources */,
 				62765939184552B4002D4805 /* 60@2x.png in Resources */,
 				62DC11AC17FB3461006FB4A4 /* MainNavView.xib in Resources */,
+				621B7726184E5F4D0006B375 /* loading.png in Resources */,
 				6276591C184551A6002D4805 /* bg-rating-item@2x.png in Resources */,
 				6276593F1845532F002D4805 /* 29@2x.png in Resources */,
 				62765938184552B4002D4805 /* 57@2x.png in Resources */,

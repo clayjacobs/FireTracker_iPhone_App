@@ -22,6 +22,11 @@
 // The distance a user has to scroll before we update our annotations for the screen.
 #define SCROLL_UPDATE_DISTANCE      80.00
 
+#define SYSTEM_VERSION_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
 
 @interface LocalMapViewController () {
     
@@ -32,6 +37,8 @@
 
 - (void) showCloseDetailViewButton;
 - (void) hideCloseDetailViewButton;
+
+- (void) recenterMap;
 
 @end
 
@@ -69,6 +76,22 @@
     [annotationDetail setFrame: self.view.bounds];
     [annotationDetail layoutIfNeeded];
     
+}
+
+- (void) viewDidLayoutSubviews {
+    
+    // For iOS 6, we need to move the segmented bar/button up
+    // a bit since the header isn't as big.
+    if( SYSTEM_VERSION_LESS_THAN( @"7.0" ) ) {
+        
+        // Change the font size
+        UIFont *font = [UIFont boldSystemFontOfSize:14.0f];
+        NSDictionary *attributes = [NSDictionary dictionaryWithObject: font
+                                                               forKey: UITextAttributeFont];
+        
+        [mapViewOptionsControl setTitleTextAttributes: attributes
+                                             forState: UIControlStateNormal];
+    }
 }
 
 - (void) addAnnotation: (int)tagType withImage:(UIImage*)taggedImage {
@@ -124,6 +147,10 @@
     
 }
 
+- (IBAction) recenterMap:(id)sender {
+    [self recenterMap];
+}
+
 #pragma mark -
 #pragma mark Private Functions
 
@@ -151,6 +178,17 @@
         [annotationDetail removeFromSuperview];
         
     }];
+}
+
+- (void) recenterMap {
+    
+    MKCoordinateRegion region;
+    region.center = self.location.coordinate;
+    region.span   = MKCoordinateSpanMake( 0.05, 0.05 );
+    
+    region = [mapView regionThatFits:region];
+    [mapView setRegion:region animated:NO];
+    
 }
 
 #pragma mark -
@@ -181,7 +219,7 @@
         RatingAnnotation *annotation = [[RatingAnnotation alloc] init];
         [annotation setIsLocal: NO];
         [annotation setCoordinate: CLLocationCoordinate2DMake( lat, lng )];
-        [annotation setTag: [dataRow valueForKey: @"rating"] ];
+        [annotation setTag: [[dataRow valueForKey: @"rating"] intValue] ];
         
         NSURL *imageURL = [NSURL URLWithString: [dataRow valueForKey: @"photo"] ];
         [annotation setTaggedImageURL: imageURL];
@@ -234,14 +272,14 @@
 
 - (void) mapView:(MKMapView *)map didUpdateUserLocation:(MKUserLocation *)userLocation {
     
+    // We only want to recenter the map if the location was nil before.
+    BOOL recenterMap = self.location == nil;
+    
     self.location = userLocation.location;
-    
-    MKCoordinateRegion region;
-    region.center = map.userLocation.coordinate;
-    region.span   = MKCoordinateSpanMake( 0.05, 0.05 );
-    
-    region = [map regionThatFits:region];
-    [map setRegion:region animated:NO];
+
+    if( recenterMap ) {
+        [self recenterMap];
+    }
     
 }
 
