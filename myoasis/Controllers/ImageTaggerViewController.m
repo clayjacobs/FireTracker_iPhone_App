@@ -8,6 +8,7 @@
 
 #import "ImageTaggerViewController.h"
 #import "AppDelegate.h"
+#import "TargetConditionals.h"
 
 @interface ImageTaggerViewController ()
 
@@ -58,8 +59,11 @@
 - (void) imagePickerControllerDidCancel:(UIImagePickerController *)picker {
 
     [imagePicker dismissViewControllerAnimated:YES completion:^(void) {
+
+        if( TARGET_IPHONE_SIMULATOR ) {
+            [[AppDelegate instance] addAnnotation: [UIImage imageNamed:@"biohazard.png"]];
+        }
         
-        [[AppDelegate instance] addAnnotation: [UIImage imageNamed:@"biohazard.png"]];
         [[AppDelegate instance] toggleRatingMenu];
         
     }];
