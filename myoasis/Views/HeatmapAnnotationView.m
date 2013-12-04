@@ -16,8 +16,17 @@
     self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
     
     if( self ) {
-
-        UIImage *annotationImage = [UIImage imageNamed:@"heatmap.png"];
+        
+        RatingAnnotation *pin = (RatingAnnotation*)annotation;
+        
+        UIImage *annotationImage;
+        if( pin.tag == 0 ) {
+            annotationImage = [UIImage imageNamed: @"green"];
+        } else if( pin.tag == 1 ) {
+            annotationImage = [UIImage imageNamed: @"yellow"];
+        } else {
+            annotationImage = [UIImage imageNamed: @"red"];
+        }
         
         CGRect frame = [self frame];
         frame.size = [annotationImage size];
@@ -29,7 +38,7 @@
         [self setCanShowCallout:NO];
         
         // TODO: Determine alpha based on the annotation/density/time
-        self.alpha = 0.10;
+        self.alpha = 0.25;
         
     }
     
