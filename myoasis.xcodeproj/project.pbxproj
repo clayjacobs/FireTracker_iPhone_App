@@ -143,7 +143,7 @@
 		629EE1101804CF9400DF50DB /* keep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = keep.m; path = "keep-sdk/keep.m"; sourceTree = "<group>"; };
 		629EE1131804DCB700DF50DB /* KeepData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeepData.h; path = "keep-sdk/KeepData.h"; sourceTree = "<group>"; };
 		629EE1141804DCB700DF50DB /* KeepData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeepData.m; path = "keep-sdk/KeepData.m"; sourceTree = "<group>"; };
-		62DC117717FB2F76006FB4A4 /* myoasis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myoasis.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		62DC117717FB2F76006FB4A4 /* My.Oasis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = My.Oasis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62DC117A17FB2F76006FB4A4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		62DC117C17FB2F76006FB4A4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		62DC117E17FB2F76006FB4A4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -301,7 +301,7 @@
 		62DC117817FB2F76006FB4A4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				62DC117717FB2F76006FB4A4 /* myoasis.app */,
+				62DC117717FB2F76006FB4A4 /* My.Oasis.app */,
 				62DC119217FB2F76006FB4A4 /* myoasisTests.xctest */,
 			);
 			name = Products;
@@ -461,7 +461,7 @@
 			);
 			name = myoasis;
 			productName = myoasis;
-			productReference = 62DC117717FB2F76006FB4A4 /* myoasis.app */;
+			productReference = 62DC117717FB2F76006FB4A4 /* My.Oasis.app */;
 			productType = "com.apple.product-type.application";
 		};
 		62DC119117FB2F76006FB4A4 /* myoasisTests */ = {
@@ -492,7 +492,7 @@
 				ORGANIZATIONNAME = DHLabs;
 				TargetAttributes = {
 					62DC117617FB2F76006FB4A4 = {
-						DevelopmentTeam = G6N9EFGLR9;
+						DevelopmentTeam = 57825ASUMP;
 						SystemCapabilities = {
 							com.apple.iOS = {
 								enabled = 1;
@@ -758,6 +758,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "myoasis/myoasis-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -768,7 +769,8 @@
 				);
 				INFOPLIST_FILE = "myoasis/myoasis-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = My.Oasis;
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -780,6 +782,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "myoasis/myoasis-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -791,7 +794,8 @@
 				);
 				INFOPLIST_FILE = "myoasis/myoasis-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = My.Oasis;
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -813,7 +817,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "myoasisTests/myoasisTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = myoasisTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -832,7 +836,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "myoasis/myoasis-Prefix.pch";
 				INFOPLIST_FILE = "myoasisTests/myoasisTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = myoasisTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
