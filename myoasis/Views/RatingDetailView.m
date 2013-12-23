@@ -24,7 +24,13 @@
 }
 
 - (void) willMoveToSuperview:(UIView *)newSuperview {
-    
+
+    if( annotation.category ) {
+        categoryLabel.text = annotation.category;
+    } else {
+        categoryLabel.text = @"Uncategorized";
+    }
+
     if( annotation.isLocal ) {
         taggedImage.image = annotation.taggedImage;
     } else {

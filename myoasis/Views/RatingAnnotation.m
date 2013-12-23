@@ -10,7 +10,7 @@
 
 @implementation RatingAnnotation
 
-@synthesize coordinate, title, subtitle;
+@synthesize coordinate, title, subtitle, category;
 
 @synthesize tag, taggedImageURL, taggedImage, isLocal;
 

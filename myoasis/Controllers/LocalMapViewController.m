@@ -220,6 +220,12 @@
         [annotation setIsLocal: NO];
         [annotation setCoordinate: CLLocationCoordinate2DMake( lat, lng )];
         [annotation setTag: [[dataRow valueForKey: @"rating"] intValue] ];
+        NSString * category = [dataRow objectForKey:@"category"];
+        if ( category && ![category isEqualToString:@"None"]) {
+            annotation.category = category;
+        } else {
+            category = nil;
+        }
         
         NSURL *imageURL = [NSURL URLWithString: [dataRow valueForKey: @"photo"] ];
         [annotation setTaggedImageURL: imageURL];

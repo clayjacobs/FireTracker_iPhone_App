@@ -14,6 +14,7 @@
 @interface RatingDetailView : UIView {
     
     IBOutlet UIImageView *taggedImage;
+    IBOutlet UILabel *categoryLabel;
 
     RatingAnnotation *annotation;
     

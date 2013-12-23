@@ -11,6 +11,7 @@
 
 #import "LocalMapViewController.h"
 #import "TargetConditionals.h"
+#import "CategoryPickerViewController.h"
 
 #if TARGET_IPHONE_SIMULATOR
 
@@ -117,46 +118,62 @@
 
 - (void) addAnnotation: (UIImage*) taggedImage {
     
+    [self addAnnotation:taggedImage withCategory:nil];
+    
+}
+
+- (void) addAnnotation:(UIImage *)taggedImage withCategory:(NSString *)category {
     // Add image to map
     [mapView addAnnotation: currentTag withImage: taggedImage];
-    
+
     NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
-    
+
     // User's UUID
     // See Apple Docs for identifierForVendor for more info on how
     // this identifier is created.
     [data setObject: [[[UIDevice currentDevice] identifierForVendor] UUIDString]
              forKey: @"uuid" ];
-   
+
     // User's current location
     CLLocationCoordinate2D coords = [[mapView location] coordinate];
     [data setObject: [NSString stringWithFormat: @"%f,%f,%f", coords.longitude,
-                                                              coords.latitude,
-                                                              mapView.location.altitude]
+                      coords.latitude,
+                      mapView.location.altitude]
              forKey: @"location" ];
-    
+
     // Rating
     [data setObject: [NSString stringWithFormat:@"%d", currentTag]
              forKey: @"rating"];
-    
+
     // Image data
     NSMutableDictionary *images = [[NSMutableDictionary alloc] init];
     [images setObject: taggedImage
                forKey: @"photo" ];
-    
+
+    //add category string
+    if( category ) {
+        [data setObject:category forKey:@"category"];
+    }
+
     // Upload image to server
     [self.keep postData: data
               andImages: images];
-    
 }
 
 - (void) showHomeMenu:(id)sender {
-    
+
     NSLog( @"Showing home menu" );
  
     UIViewController *test = [[UIViewController alloc] initWithNibName:@"MainMenu" bundle:nil];
     [rootViewController pushViewController:test animated:YES];
 
+}
+
+- (void) addCategoryWithImage:(UIImage *)image {
+    CategoryPickerViewController * categoryPicker = [[CategoryPickerViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    categoryPicker.image = image;
+    UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:categoryPicker];
+    [rootViewController presentViewController:nav animated:YES completion:nil];
 }
 
 - (void) takePicture:(id)sender withTag:(int)tag {

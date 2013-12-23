@@ -37,8 +37,10 @@
 + (AppDelegate*) instance;
 
 - (void) addAnnotation: (UIImage*) taggedImage;
+- (void) addAnnotation: (UIImage*) taggedImage withCategory:(NSString*) category;
 - (void) showHomeMenu: (id)sender;
 - (void) takePicture: (id)sender withTag: (int)tag;
+- (void) addCategoryWithImage:(UIImage*) image;
 - (void) toggleRatingMenu;
 
 @end

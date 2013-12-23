@@ -47,10 +47,13 @@
     UIImage *taggedImage = (UIImage*)[info valueForKey: UIImagePickerControllerOriginalImage];
     NSLog( @"IMAGE: %@", [taggedImage description] );
 
+
     [imagePicker dismissViewControllerAnimated:YES completion:^(void) {
         
-        [[AppDelegate instance] addAnnotation: taggedImage];
-        [[AppDelegate instance] toggleRatingMenu];
+        //[[AppDelegate instance] addAnnotation: taggedImage];
+        //[[AppDelegate instance] toggleRatingMenu];
+
+        [[AppDelegate instance] addCategoryWithImage:taggedImage];
         
     }];
     
