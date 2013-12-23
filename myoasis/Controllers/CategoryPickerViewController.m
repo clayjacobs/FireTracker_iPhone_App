@@ -13,7 +13,9 @@
 @interface CategoryPickerViewController ()
 {
     NSString * selectedCategory;
-    NSInteger selectedRow;
+    NSString * selectedTime;
+    NSInteger selectedCategoryRow;
+    NSInteger selectedTimeRow;
 }
 
 @end
@@ -25,7 +27,8 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        selectedRow = -1;
+        selectedCategoryRow = -1;
+        selectedTimeRow = 0;
     }
     return self;
 }
@@ -34,7 +37,7 @@
 {
     [super viewDidLoad];
 
-    self.title = @"Select Category";
+    self.title = @"Add Details";
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -58,7 +61,9 @@
     if( selectedCategory ) {
         [self dismissViewControllerAnimated:YES completion:^(){
 
-            [[AppDelegate instance] addAnnotation:self.image withCategory:selectedCategory];
+            NSDictionary * annotationParams = @{ @"category": selectedCategory, @"expiration_time": selectedTime };
+
+            [[AppDelegate instance] addAnnotation:self.image withDictionary:annotationParams];
             [[AppDelegate instance] toggleRatingMenu];
         }];
     } else {
@@ -76,16 +81,27 @@
 
 #pragma mark - Table view data source
 
+- (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if( section == 0 ) {
+        return @"Select Category";
+    }
+    return @"Select Expiration Time";
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return 6;
+    if( section == 0 ) {
+        return 6;
+    }
+    return 4;
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -97,35 +113,72 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
 
-    switch (indexPath.row) {
+    switch (indexPath.section) {
         case 0:
-            cell.textLabel.text = @"Trash";
+        {
+            if( indexPath.row == selectedCategoryRow ) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                selectedCategory = cell.textLabel.text;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
+
+            switch (indexPath.row) {
+                case 0:
+                    cell.textLabel.text = @"Trash";
+                    break;
+                case 1:
+                    cell.textLabel.text = @"Biohazard";
+                    break;
+                case 2:
+                    cell.textLabel.text = @"Contaminated Food";
+                    break;
+                case 3:
+                    cell.textLabel.text = @"Contaminated Water";
+                    break;
+                case 4:
+                    cell.textLabel.text = @"Possible Infectious Illness";
+                    break;
+                case 5:
+                    cell.textLabel.text = @"Physical Hazard";
+                    break;
+
+                default:
+                    break;
+            }
+            break;
+        }
             break;
         case 1:
-            cell.textLabel.text = @"Biohazard";
-            break;
-        case 2:
-            cell.textLabel.text = @"Contaminated Food";
-            break;
-        case 3:
-            cell.textLabel.text = @"Contaminated Water";
-            break;
-        case 4:
-            cell.textLabel.text = @"Possible Infectious Illness";
-            break;
-        case 5:
-            cell.textLabel.text = @"Physical Hazard";
-            break;
+        {
+            if( indexPath.row == selectedTimeRow ) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                selectedTime = cell.textLabel.text;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
 
+            switch (indexPath.row) {
+                case 0:
+                    cell.textLabel.text = @"Never";
+                    break;
+                case 1:
+                    cell.textLabel.text = @"1 hour";
+                    break;
+                case 2:
+                    cell.textLabel.text = @"1 day";
+                    break;
+                case 3:
+                    cell.textLabel.text = @"1 week";
+                    break;
+
+                default:
+                    break;
+            }
+            break;
+        }
         default:
             break;
-    }
-
-    if( indexPath.row == selectedRow ) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        selectedCategory = cell.textLabel.text;
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
     }
 
     return cell;
@@ -133,7 +186,12 @@
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    selectedRow = indexPath.row;
+    if( indexPath.section == 0 ) {
+        selectedCategoryRow = indexPath.row;
+    } else {
+        selectedTimeRow = indexPath.row;
+    }
+
     [tableView reloadData];
 }
 
