@@ -117,12 +117,17 @@
 #pragma mark Public functions
 
 - (void) addAnnotation: (UIImage*) taggedImage {
-    
     [self addAnnotation:taggedImage withCategory:nil];
-    
 }
 
 - (void) addAnnotation:(UIImage *)taggedImage withCategory:(NSString *)category {
+
+    NSDictionary * additionalParams = @{ @"category": category };
+    [self addAnnotation:taggedImage withDictionary:additionalParams];
+}
+
+- (void) addAnnotation:(UIImage *)taggedImage withDictionary:(NSDictionary *)dictionary
+{
     // Add image to map
     [mapView addAnnotation: currentTag withImage: taggedImage];
 
@@ -150,9 +155,9 @@
     [images setObject: taggedImage
                forKey: @"photo" ];
 
-    //add category string
-    if( category ) {
-        [data setObject:category forKey:@"category"];
+    //add additional params
+    for( NSString * key in [dictionary allKeys] ) {
+        [data setObject:[dictionary objectForKey:key] forKey:key];
     }
 
     // Upload image to server
