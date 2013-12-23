@@ -28,11 +28,11 @@
 #define SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 #define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
 
-@interface LocalMapViewController () {
+@interface LocalMapViewController ()<UIActionSheetDelegate> {
     
     NSMutableArray *keepAnnotations;
     CLLocationCoordinate2D lastMapLocation;
-    
+    NSString * filterCategory;
 }
 
 - (void) showCloseDetailViewButton;
@@ -55,6 +55,8 @@
         // Track the user's location.
         [mapView setUserTrackingMode: MKUserTrackingModeFollow];
         [self setTitle:@"My Oasis"];
+
+        filterCategory = nil;
         
         keepAnnotations = [[NSMutableArray alloc] init];
         lastMapLocation = mapView.centerCoordinate;
@@ -75,6 +77,8 @@
 
     [annotationDetail setFrame: self.view.bounds];
     [annotationDetail layoutIfNeeded];
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:self action:@selector(filter)];
     
 }
 
@@ -104,6 +108,45 @@
     
     [mapView addAnnotation: annotation];
     
+}
+
+//filter annotations based on category
+- (void) filter {
+    UIActionSheet * filterSelect = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"No Filter", @"Trash", @"Biohazard", @"Contaminated Food",@"Contaminated Water", @"Possible Infectious Illness", @"Physical Hazard", nil];
+
+    [filterSelect showInView:self.view];
+}
+
+-(void) actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            filterCategory = nil;
+            break;
+        case 1:
+            filterCategory = @"Trash";
+            break;
+        case 2:
+            filterCategory = @"Biohazard";
+            break;
+        case 3:
+            filterCategory = @"Contaminated Food";
+            break;
+        case 4:
+            filterCategory = @"Contaminated Water";
+            break;
+        case 5:
+            filterCategory = @"Possible Infectious Illness";
+            break;
+        case 6:
+            filterCategory = @"Physical Hazard";
+            break;
+
+        default:
+            break;
+    }
+
+    [self mapView:mapView regionDidChangeAnimated:YES];
 }
 
 - (NSString*) boundingBox {
@@ -204,7 +247,7 @@
     for( RatingAnnotation *annotation in keepAnnotations ) {
         [mapView removeAnnotation: annotation];
     }
-    
+
     [keepAnnotations removeAllObjects];
     
     for( NSDictionary *datum in data ) {
@@ -224,15 +267,21 @@
         if ( category && ![category isEqualToString:@"None"]) {
             annotation.category = category;
         } else {
-            category = nil;
+            annotation.category = nil;
         }
         
         NSURL *imageURL = [NSURL URLWithString: [dataRow valueForKey: @"photo"] ];
         [annotation setTaggedImageURL: imageURL];
-        
-        [keepAnnotations addObject: annotation];
-        [mapView addAnnotation: annotation];
 
+        if( filterCategory ) {
+            if( annotation.category && [annotation.category isEqualToString:filterCategory] ) {
+                [keepAnnotations addObject: annotation];
+                [mapView addAnnotation: annotation];
+            }
+        } else {
+            [keepAnnotations addObject: annotation];
+            [mapView addAnnotation: annotation];
+        }
     }
 }
 
