@@ -64,7 +64,7 @@
     [imagePicker dismissViewControllerAnimated:YES completion:^(void) {
 
         if( TARGET_IPHONE_SIMULATOR ) {
-            [[AppDelegate instance] addAnnotation: [UIImage imageNamed:@"biohazard.png"]];
+            [[AppDelegate instance] addAnnotation: [UIImage imageNamed:@"house.png"]];
         }
         
         [[AppDelegate instance] toggleRatingMenu];

@@ -24,32 +24,28 @@
         //--// Add the AwesomeMenu button
         UIImage *ratingItemImage        = [UIImage imageNamed:@"bg-rating-item.png"];
         UIImage *ratingItemImagePressed = [UIImage imageNamed:@"bg-rating-item-highlighted.png"];
-       
+        
         [self setImage: [UIImage imageNamed:@"bg-add-rating.png"]];
         
-        AwesomeMenuItem *mehItem = [[AwesomeMenuItem alloc] initWithImage: ratingItemImage
+        AwesomeMenuItem *citizenItem = [[AwesomeMenuItem alloc] initWithImage: ratingItemImage
                                                          highlightedImage: ratingItemImagePressed
-                                                             ContentImage: [UIImage imageNamed:@"meh.png"]
-                                                  highlightedContentImage: nil];
-
-        AwesomeMenuItem *sadItem = [[AwesomeMenuItem alloc] initWithImage: ratingItemImage
-                                                         highlightedImage: ratingItemImagePressed
-                                                             ContentImage: [UIImage imageNamed:@"sad.png"]
+                                                             ContentImage: [UIImage imageNamed:@"citizen.png"]
                                                   highlightedContentImage: nil];
         
-        AwesomeMenuItem *bioItem = [[AwesomeMenuItem alloc] initWithImage: ratingItemImage
+        AwesomeMenuItem *firefighterItem = [[AwesomeMenuItem alloc] initWithImage: ratingItemImage
                                                          highlightedImage: ratingItemImagePressed
-                                                             ContentImage: [UIImage imageNamed:@"biohazard"]
+                                                             ContentImage: [UIImage imageNamed:@"firehat.png"]
                                                   highlightedContentImage: nil];
         
-        [self setMenusArray: [NSArray arrayWithObjects: mehItem, sadItem, bioItem, nil]];
+        
+        [self setMenusArray: [NSArray arrayWithObjects: citizenItem, firefighterItem, nil]];
         
         // Align the button in the horizontal middle, a bit from the bottom of the screen.
         self.startPoint = CGPointMake( self.bounds.size.width / 2, self.bounds.size.height - 64.0 );
         
         // Rotate so that the menu pops above the + icon.
-        self.rotateAngle    = -M_PI / 3;
-        self.menuWholeAngle = M_PI;
+        self.rotateAngle    = -M_PI / 6;
+        self.menuWholeAngle = M_PI / 1.5;
         
         // Set how far away the buttons will fly out.
         self.endRadius  = 80.0f;

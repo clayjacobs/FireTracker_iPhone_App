@@ -13,8 +13,10 @@
 #import "RatingAnnotation.h"
 #import "RatingAnnotationView.h"
 #import "HeatmapAnnotationView.h"
+#import "CALFireAnnotation.h"
 
 #import "KeepData.h"
+#import "AFNetworking.h"
 
 #define MAP_VIEW_PINS       0
 #define MAP_VIEW_HEATMAP    1
@@ -31,20 +33,21 @@
 @interface LocalMapViewController ()<UIActionSheetDelegate> {
     
     NSMutableArray *keepAnnotations;
+    NSMutableArray *calfireAnnotations;
     CLLocationCoordinate2D lastMapLocation;
     NSString * filterCategory;
 }
-
 - (void) showCloseDetailViewButton;
 - (void) hideCloseDetailViewButton;
 
 - (void) recenterMap;
+- (void) openInfo;
 
 @end
 
 @implementation LocalMapViewController
 
-@synthesize location;
+@synthesize location, currentLocation;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     
@@ -54,12 +57,13 @@
         
         // Track the user's location.
         [mapView setUserTrackingMode: MKUserTrackingModeFollow];
-        [self setTitle:@"My Oasis"];
+        [self setTitle:@"Fire Tracker"];
 
         filterCategory = nil;
         
         keepAnnotations = [[NSMutableArray alloc] init];
         lastMapLocation = mapView.centerCoordinate;
+        calfireAnnotations = [[NSMutableArray alloc] init];
         
 //        UIBarButtonItem *homeMenu = [[UIBarButtonItem alloc] initWithTitle: @"Menu"
 //                                                                     style: UIBarButtonItemStylePlain
@@ -73,13 +77,75 @@
     
 }
 
+- (void) viewDidLoad
+{
+    [super viewDidLoad];
+    
+    NSLog(@"About to create coord1 on load");
+    CLLocationCoordinate2D coord1 = CLLocationCoordinate2DMake(38.517952, -122.097931);
+    CALFireAnnotation *annotation1 = [[CALFireAnnotation alloc]initWithTitle:@"CALFire Warning" Location:coord1];
+    [calfireAnnotations addObject: annotation1];
+    [mapView addAnnotation: annotation1];
+    
+    CLLocationCoordinate2D coord2 = CLLocationCoordinate2DMake(38.667149, -122.45327);
+    CALFireAnnotation *annotation2 = [[CALFireAnnotation alloc]initWithTitle:@"CALFire Warning" Location:coord2];
+    [calfireAnnotations addObject: annotation2];
+    [mapView addAnnotation: annotation2];
+    
+    CLLocationCoordinate2D coord3 = CLLocationCoordinate2DMake(38.816006, -121.012428);
+    CALFireAnnotation *annotation3 = [[CALFireAnnotation alloc]initWithTitle:@"CALFire Warning" Location:coord3];
+    [calfireAnnotations addObject: annotation3];
+    [mapView addAnnotation: annotation3];
+    
+    CLLocationCoordinate2D coord4 = CLLocationCoordinate2DMake(40.571899, -121.341499);
+    CALFireAnnotation *annotation4 = [[CALFireAnnotation alloc]initWithTitle:@"CALFire Warning" Location:coord4];
+    [calfireAnnotations addObject: annotation4];
+    [mapView addAnnotation: annotation4];
+    
+    CLLocationCoordinate2D coord5 = CLLocationCoordinate2DMake(39.188694, -121.270226);
+    CALFireAnnotation *annotation5 = [[CALFireAnnotation alloc]initWithTitle:@"CALFire Warning" Location:coord5];
+    [calfireAnnotations addObject: annotation5];
+    [mapView addAnnotation: annotation5];
+    
+    CLLocationCoordinate2D coord6 = CLLocationCoordinate2DMake(41.488998, -120.903999);
+    CALFireAnnotation *annotation6 = [[CALFireAnnotation alloc]initWithTitle:@"CALFire Warning" Location:coord6];
+    [calfireAnnotations addObject: annotation6];
+    [mapView addAnnotation: annotation6];
+    
+    CLLocationCoordinate2D coord7 = CLLocationCoordinate2DMake(41.889999, -120.790001);
+    CALFireAnnotation *annotation7 = [[CALFireAnnotation alloc]initWithTitle:@"CALFire Warning" Location:coord7];
+    [calfireAnnotations addObject: annotation7];
+    [mapView addAnnotation: annotation7];
+    
+    CLLocationCoordinate2D coord9 = CLLocationCoordinate2DMake(35.697964, -118.618523);
+    CALFireAnnotation *annotation9 = [[CALFireAnnotation alloc]initWithTitle:@"CALFire Warning" Location:coord9];
+    [calfireAnnotations addObject: annotation9];
+    [mapView addAnnotation: annotation9];
+    
+    CLLocationCoordinate2D coord10 = CLLocationCoordinate2DMake(40.41, -123.239998);
+    CALFireAnnotation *annotation10 = [[CALFireAnnotation alloc]initWithTitle:@"CALFire Warning" Location:coord10];
+    [calfireAnnotations addObject: annotation10];
+    [mapView addAnnotation: annotation10];
+    
+    CLLocationCoordinate2D coord11 = CLLocationCoordinate2DMake(37.22575, -121.820526);
+    CALFireAnnotation *annotation11 = [[CALFireAnnotation alloc]initWithTitle:@"CALFire Warning" Location:coord11];
+    [calfireAnnotations addObject: annotation11];
+    [mapView addAnnotation: annotation11];
+    
+    NSLog(@"Created coord1");
+    NSLog(@"coord1Annotation create... attempting to add annotation");
+    NSLog(@"%f",self.location.coordinate.latitude);
+}
+
 - (void) viewDidAppear:(BOOL)animated {
 
     [annotationDetail setFrame: self.view.bounds];
     [annotationDetail layoutIfNeeded];
 
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:self action:@selector(filter)];
-    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:self action:@selector(filter) ];
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:255.0/255.0 green:51.0/255.0 blue:51.0/255.0 alpha:1.0];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(settings) ];
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor colorWithRed:255.0/255.0 green:51.0/255.0 blue:51.0/255.0 alpha:1.0];
 }
 
 - (void) viewDidLayoutSubviews {
@@ -110,11 +176,21 @@
     
 }
 
+- (void) settings {
+    UIActionSheet * viewCoordinates = [[UIActionSheet alloc] initWithTitle:@"Add, view, or modify your important coordinates" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Add Current Coordinate", nil];
+    
+    [viewCoordinates showInView:self.view];
+}
+
 //filter annotations based on category
 - (void) filter {
-    UIActionSheet * filterSelect = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"No Filter", @"Trash", @"Biohazard", @"Contaminated Food",@"Contaminated Water", @"Possible Infectious Illness", @"Physical Hazard", nil];
+    UIActionSheet * filterSelect = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"No Filter", @"Trash Fire", @"Wildfire", @"House Fire",@"Other Uncontrolled Fire", nil];
 
     [filterSelect showInView:self.view];
+}
+
+- (void) didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
 }
 
 -(void) actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
@@ -124,22 +200,16 @@
             filterCategory = nil;
             break;
         case 1:
-            filterCategory = @"Trash";
+            filterCategory = @"Trash Fire";
             break;
         case 2:
-            filterCategory = @"Biohazard";
+            filterCategory = @"Wildfire";
             break;
         case 3:
-            filterCategory = @"Contaminated Food";
+            filterCategory = @"House Fire";
             break;
         case 4:
-            filterCategory = @"Contaminated Water";
-            break;
-        case 5:
-            filterCategory = @"Possible Infectious Illness";
-            break;
-        case 6:
-            filterCategory = @"Physical Hazard";
+            filterCategory = @"Other Uncontrolled Fire";
             break;
 
         default:
@@ -194,6 +264,14 @@
     [self recenterMap];
 }
 
+- (IBAction) openInfo:(id)sender {
+    [self openInfo];
+}
+
+/*- (IBAction) takeImage:(id)sender {
+    [self takeImage];
+}*/
+
 #pragma mark -
 #pragma mark Private Functions
 
@@ -234,6 +312,19 @@
     
 }
 
+/*- (void) takeImage {
+    [[AppDelegate instance] takePhoto:self];
+}*/
+
+- (void) openInfo {
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Information"
+                                                      message:@"Alert body"
+                                                     delegate:nil
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+    [message show];
+}
+
 #pragma mark -
 #pragma mark KeepSDKDelegate functions
 
@@ -249,6 +340,10 @@
     }
 
     [keepAnnotations removeAllObjects];
+    for (id <MKAnnotation> annotation in mapView.annotations) {
+        NSLog(@"Removing Annotation");
+        [[mapView viewForAnnotation:annotation] removeObserver:self forKeyPath:@"selected"];
+    }
     
     for( NSDictionary *datum in data ) {
         
@@ -289,7 +384,7 @@
 #pragma mark MKMapViewDelegate functions
 
 - (void) mapView:(MKMapView *)map regionDidChangeAnimated:(BOOL)animated {
-    
+
     MKCoordinateRegion mapRegion;
     mapRegion.center = map.centerCoordinate;
     
@@ -331,6 +426,8 @@
     BOOL recenterMap = self.location == nil;
     
     self.location = userLocation.location;
+    currentLocation = self.location.coordinate;
+    
 
     if( recenterMap ) {
         [self recenterMap];
@@ -339,6 +436,68 @@
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)map viewForAnnotation:(id<MKAnnotation>)annotation {
+    NSLog(NSStringFromClass([annotation class]));
+    if ([annotation isKindOfClass:[CALFireAnnotation class]]) {
+        NSLog(@"Not returning nil");
+        CALFireAnnotation *myLocation = (CALFireAnnotation *)annotation;
+        
+        MKAnnotationView *annotationView1 = [mapView dequeueReusableAnnotationViewWithIdentifier:@"CALFireAnnotation"];
+        
+        if (annotationView1 == nil) {
+            annotationView1 = myLocation.annotationView;
+        }
+        else {
+            annotationView1.annotation = annotation;
+        }
+        
+        return annotationView1;
+    }
+    /*else
+    {
+        NSLog(@"Returning nil");
+        return nil;
+    }*/
+    // If this is the annotation for the user's location, ignore it.
+    if( annotation == map.userLocation ) {
+        return nil;
+    }
+    
+    MKAnnotationView *pinView = nil;
+    
+    NSLog(@"Made it to Rating Annotation");
+    if( [mapViewOptionsControl selectedSegmentIndex] == MAP_VIEW_PINS ) {
+        
+        // All other annotation's on the screen will be <RatingAnnotation>.
+        RatingAnnotation *pin = (RatingAnnotation*)annotation;
+        pinView = [map dequeueReusableAnnotationViewWithIdentifier: pin.identifier];
+        
+        // If this pin view doesn't exist already, create it!
+        if( !pinView ) {
+            pinView = [[RatingAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier: pin.identifier];
+        }
+        
+    } else {
+        
+        static NSString *const kHeatmapAnnotationId = @"HeatmapAnnotation";
+        
+        // All other annotation's on the screen will be <RatingAnnotation>.
+        pinView = [map dequeueReusableAnnotationViewWithIdentifier: @"HEATMAP"];
+        
+        // If this pin view doesn't exist already, create it!
+        if( !pinView ) {
+            pinView = [[HeatmapAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier: kHeatmapAnnotationId ];
+        }
+        
+    }
+    
+    // Setup the views/etc. for this annotation
+    [pinView setAnnotation:annotation];
+    
+    NSLog(@"Returning pinView");
+    return pinView;
+}
+
+/*- (MKAnnotationView *)mapView:(MKMapView *)map viewForAnnotation:(id<MKAnnotation>)annotation {
     
     // If this is the annotation for the user's location, ignore it.
     if( annotation == map.userLocation ) {
@@ -377,7 +536,7 @@
     
     return pinView;
     
-}
+}*/
 
 - (void) mapView:(MKMapView *)map didSelectAnnotationView:(MKAnnotationView *)view {
     

@@ -16,17 +16,13 @@
 
 - (NSString*) identifier {
     
-    static NSString *const kMehAnnotationId         = @"MehAnnotation";
-    static NSString *const kSadAnnotationId         = @"SadAnnotation";
-    static NSString *const kBiohazardAnnotationId   = @"BiohazardAnnotation";
+    static NSString *const kCitizenAnnotationId         = @"CitizenAnnotation";
+    static NSString *const kFirefighterAnnotationId         = @"FirefighterAnnotation";
     
-    if( tag == 0 ) {
-        return kMehAnnotationId;
-    } else if( tag == 1 ) {
-        return kSadAnnotationId;
-    }
-    
-    return kBiohazardAnnotationId;
+    if( tag == 0 )
+        return kCitizenAnnotationId;
+    else
+        return kFirefighterAnnotationId;
     
 }
 

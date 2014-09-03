@@ -11,26 +11,32 @@
 
 #import "keep.h"
 #import "RatingDetailView.h"
+#import "AppDelegate.h"
 
 
-@interface LocalMapViewController : UIViewController<MKMapViewDelegate, KeepSDKDelegate> {
+@interface LocalMapViewController : UIViewController<MKMapViewDelegate, KeepSDKDelegate, NSXMLParserDelegate> {
     
     IBOutlet MKMapView *mapView;
     IBOutlet RatingDetailView *annotationDetail;
     IBOutlet UISegmentedControl *mapViewOptionsControl;
     IBOutlet UIButton *recenterButton;
+    IBOutlet UIButton *infoButton;
     
     // User's current location
     CLLocation *location;
+    CLLocationCoordinate2D currentLocation;
     
 }
 
 @property (nonatomic, retain) CLLocation* location;
+@property (nonatomic, assign) CLLocationCoordinate2D currentLocation;
 
 - (void) addAnnotation: (int) tagType withImage: (UIImage*) taggedImage;
 - (NSString*) boundingBox;
 
 - (IBAction) mapViewOptionSelected: (id)sender;
 - (IBAction) recenterMap:(id)sender;
+//- (IBAction) takeImage:(id)sender;
+- (IBAction) openInfo:(id)sender;
 
 @end

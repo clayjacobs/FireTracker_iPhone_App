@@ -21,11 +21,14 @@
         
         UIImage *annotationImage = nil;
         if( pin.tag == 0 ) {
-            annotationImage = [UIImage imageNamed:@"meh-annotation.png"];
+            annotationImage = [UIImage imageNamed:@"trash-annotation.png"];
         } else if( pin.tag == 1 ) {
-            annotationImage = [UIImage imageNamed:@"sad-annotation.png"];
-        } else {
-            annotationImage = [UIImage imageNamed:@"biohazard-annotation.png"];
+            annotationImage = [UIImage imageNamed:@"wildfire-annotation.png"];
+        } else if( pin.tag == 2) {
+            annotationImage = [UIImage imageNamed:@"meh-annotation.png"];
+        }
+        else {
+            annotationImage = [UIImage imageNamed:@"misc-annotation.png"];
         }
         
         CGRect frame = [self frame];

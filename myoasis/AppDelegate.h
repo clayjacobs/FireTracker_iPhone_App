@@ -26,6 +26,14 @@
     
     int currentTag;
     
+    double currentLat;
+    
+    double currnetLong;
+    
+    NSInteger categoryNum;
+    
+    NSString *severity;
+    
 }
 
 @property (strong, nonatomic) UIWindow *window;
@@ -43,5 +51,8 @@
 - (void) takePicture: (id)sender withTag: (int)tag;
 - (void) addCategoryWithImage:(UIImage*) image;
 - (void) toggleRatingMenu;
+- (int) getCurrentTag;
+- (double) getCurrentLat;
+- (double) getCurrentLong;
 
 @end

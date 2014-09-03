@@ -33,6 +33,10 @@
     
 }
 
+- (int) getCurrentTag;
+- (double) getCurrentLat;
+- (double) getCurrentLong;
+
 @end
 
 @implementation AppDelegate
@@ -66,7 +70,7 @@
     [rootViewController addChildViewController:mapView];
 
     //--// Set up navigation style
-    [rootViewController.navigationBar setTintColor: [UIColor orangeColor]];
+    [rootViewController.navigationBar setTintColor: [UIColor redColor]];
     if( [[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0f ) {
         [rootViewController.navigationBar setBarTintColor: [UIColor whiteColor]];
     }
@@ -110,6 +114,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    
     
 }
 
@@ -189,6 +194,10 @@
     [rootViewController presentViewController:imageTagger.imagePicker animated:YES completion:nil];
 }
 
+/*- (void) takePhoto:(id)sender {
+    [rootViewController presentViewController:imageTagger.imagePicker animated:YES completion: nil];
+}*/
+
 - (void) toggleRatingMenu {
     
     CGFloat alpha = 0.0;
@@ -203,5 +212,18 @@
     } completion:^(BOOL finished) {}];
 
 }
+
+- (int) getCurrentTag {
+    return currentTag;
+}
+
+- (double) getCurrentLat {
+    return currentLat;
+}
+
+- (double) getCurrentLong{
+    return currnetLong;
+}
+
 
 @end

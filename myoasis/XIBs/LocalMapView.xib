@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocalMapViewController">
             <connections>
                 <outlet property="annotationDetail" destination="cHI-gn-YHF" id="jyd-RC-Wgp"/>
+                <outlet property="infoButton" destination="GGM-Yg-izy" id="3sr-DB-aJl"/>
                 <outlet property="mapView" destination="UOZ-Av-NPA" id="CPt-ln-SOz"/>
                 <outlet property="mapViewOptionsControl" destination="N4u-mx-hnY" id="BWi-Ki-fhF"/>
                 <outlet property="recenterButton" destination="Tcf-6e-h9w" id="q1E-Dh-zaK"/>
@@ -34,7 +35,7 @@
                         <segment title="Pins"/>
                         <segment title="Heatmap"/>
                     </segments>
-                    <color key="tintColor" red="1" green="0.50196078431372548" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="tintColor" red="1" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <action selector="mapViewOptionSelected:" destination="-1" eventType="valueChanged" id="6LO-iY-z7q"/>
                     </connections>
@@ -47,6 +48,16 @@
                     </state>
                     <connections>
                         <action selector="recenterMap:" destination="-1" eventType="touchDown" id="NEe-Tb-ZoY"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GGM-Yg-izy">
+                    <rect key="frame" x="278" y="526" width="22" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="openInfo:" destination="-1" eventType="touchDown" id="aLy-y3-vrZ"/>
                     </connections>
                 </button>
             </subviews>
@@ -71,7 +82,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="200" fixedFrame="YES" image="sad.png" translatesAutoresizingMaskIntoConstraints="NO" id="yjx-1F-rg4">
-                    <rect key="frame" x="0.0" y="62" width="320" height="459"/>
+                    <rect key="frame" x="0.0" y="62" width="320" height="442"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ejZ-Ng-VYm">

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>FABF9358-16F9-4765-ABE2-499C005D47A5</string>
+	<key>IDESourceControlProjectName</key>
+	<string>myoasis</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>9C9CDBA5-9562-45E6-B2F9-F2C2A6B3015B</key>
+		<string>https://bitbucket.org/distributedhealth/myoasis.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>myoasis.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>9C9CDBA5-9562-45E6-B2F9-F2C2A6B3015B</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://bitbucket.org/distributedhealth/myoasis.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>9C9CDBA5-9562-45E6-B2F9-F2C2A6B3015B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9C9CDBA5-9562-45E6-B2F9-F2C2A6B3015B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>FireTracker</string>
+		</dict>
+	</array>
+</dict>
+</plist>
