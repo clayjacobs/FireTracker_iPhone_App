@@ -42,7 +42,6 @@
         UIImage *annotationImage;
         if( pin.tag == 0 ) {
             annotationImage = [UIImage imageNamed: @"green"];
-            // annotationImage = images.image;
         } else if( pin.tag == 1 ) {
             annotationImage = [UIImage imageNamed: @"yellow"];
         } else {

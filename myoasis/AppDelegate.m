@@ -194,10 +194,6 @@
     [rootViewController presentViewController:imageTagger.imagePicker animated:YES completion:nil];
 }
 
-/*- (void) takePhoto:(id)sender {
-    [rootViewController presentViewController:imageTagger.imagePicker animated:YES completion: nil];
-}*/
-
 - (void) toggleRatingMenu {
     
     CGFloat alpha = 0.0;
@@ -217,12 +213,20 @@
     return currentTag;
 }
 
+- (void) setCurrentLat:(double)latSub {
+    currentLat = latSub;
+}
+
+- (void) setCurrentLong:(double)longSub {
+    currentLong = longSub;
+}
+
 - (double) getCurrentLat {
     return currentLat;
 }
 
 - (double) getCurrentLong{
-    return currnetLong;
+    return currentLong;
 }
 
 

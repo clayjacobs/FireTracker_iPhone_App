@@ -23,13 +23,14 @@
     NSInteger selectedSeverityRow;
     NSInteger selectedonSceneRow;
     int currentTag;
+    float currentLat;
+    float currentLong;
+    float time;
 }
 
 @end
 
 @implementation CategoryPickerViewController
-
-@synthesize location;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -72,11 +73,14 @@
 
 - (void) finish
 {
-    /*if ( selectedCategory ) {
-        CLLocation *currentLocation = location;
-        float latSub = ((float) mapView.location.coordinate);
-        NSDictionary * jsonParams = @{@"category": selectedCategory, @"severity": selectedSeverity, @"lat": latSub};
-    };*/
+    if ( selectedCategory ) {
+        time = (float)[[NSDate date] timeIntervalSince1970 ]*1000;
+        currentLat = [[AppDelegate instance] getCurrentLat];
+        currentLong = [[AppDelegate instance] getCurrentLong];
+
+        NSDictionary * jsonParams = @{@"category": selectedCategory, @"severity": selectedSeverity, @"lat": [NSNumber numberWithFloat:currentLat], @"long": [NSNumber numberWithFloat:currentLong], @"time_submitted": [NSNumber numberWithFloat:time]};
+        [[AppDelegate instance] toggleRatingMenu];
+    };
     if( selectedCategory ) {
         [self dismissViewControllerAnimated:YES completion:^(){
             

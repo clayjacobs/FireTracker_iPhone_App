@@ -12,6 +12,5 @@
 @interface CategoryPickerViewController : UITableViewController
 
 @property (nonatomic, strong) UIImage * image;
-@property (nonatomic, retain) CLLocation* location;
 
 @end

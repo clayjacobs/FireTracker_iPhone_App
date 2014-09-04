@@ -47,7 +47,7 @@
 
 @implementation LocalMapViewController
 
-@synthesize location, currentLocation;
+@synthesize location;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     
@@ -426,8 +426,8 @@
     BOOL recenterMap = self.location == nil;
     
     self.location = userLocation.location;
-    currentLocation = self.location.coordinate;
-    
+    [[AppDelegate instance] setCurrentLat:(self.location.coordinate.latitude)];
+    [[AppDelegate instance] setCurrentLong:(self.location.coordinate.longitude)];
 
     if( recenterMap ) {
         [self recenterMap];

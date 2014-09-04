@@ -24,19 +24,15 @@
     
     // User's current location
     CLLocation *location;
-    CLLocationCoordinate2D currentLocation;
-    
 }
 
 @property (nonatomic, retain) CLLocation* location;
-@property (nonatomic, assign) CLLocationCoordinate2D currentLocation;
 
 - (void) addAnnotation: (int) tagType withImage: (UIImage*) taggedImage;
 - (NSString*) boundingBox;
 
 - (IBAction) mapViewOptionSelected: (id)sender;
 - (IBAction) recenterMap:(id)sender;
-//- (IBAction) takeImage:(id)sender;
 - (IBAction) openInfo:(id)sender;
 
 @end

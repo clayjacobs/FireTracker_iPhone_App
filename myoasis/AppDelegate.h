@@ -28,7 +28,7 @@
     
     double currentLat;
     
-    double currnetLong;
+    double currentLong;
     
     NSInteger categoryNum;
     
@@ -54,5 +54,7 @@
 - (int) getCurrentTag;
 - (double) getCurrentLat;
 - (double) getCurrentLong;
+- (void) setCurrentLat:(double)latSub;
+- (void) setCurrentLong:(double)longSub;
 
 @end
