@@ -29,7 +29,6 @@
 		4C7D055A195246510077A15A /* wildfire-annotation.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C7D0554195246510077A15A /* wildfire-annotation.png */; };
 		4C7D055B195246510077A15A /* wildfire-annotation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C7D0555195246510077A15A /* wildfire-annotation@2x.png */; };
 		4C9CEBF4196B05A600D029C4 /* CALFireAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9CEBF3196B05A600D029C4 /* CALFireAnnotation.m */; };
-		4C9CEBF9196B1CB300D029C4 /* CALFireAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9CEBF8196B1CB300D029C4 /* CALFireAnnotationView.m */; };
 		4C9CEC2C196DC13300D029C4 /* calfire.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9CEC2B196DC13300D029C4 /* calfire.png */; };
 		4C9CEC2F1978487900D029C4 /* firehat.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9CEC2D1978487900D029C4 /* firehat.png */; };
 		4C9CEC301978487900D029C4 /* firehat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9CEC2E1978487900D029C4 /* firehat@2x.png */; };
@@ -144,8 +143,6 @@
 		4C7D0555195246510077A15A /* wildfire-annotation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wildfire-annotation@2x.png"; sourceTree = "<group>"; };
 		4C9CEBF2196B05A600D029C4 /* CALFireAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CALFireAnnotation.h; path = Views/CALFireAnnotation.h; sourceTree = "<group>"; };
 		4C9CEBF3196B05A600D029C4 /* CALFireAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CALFireAnnotation.m; path = Views/CALFireAnnotation.m; sourceTree = "<group>"; };
-		4C9CEBF7196B1CB300D029C4 /* CALFireAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CALFireAnnotationView.h; path = Views/CALFireAnnotationView.h; sourceTree = "<group>"; };
-		4C9CEBF8196B1CB300D029C4 /* CALFireAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CALFireAnnotationView.m; path = Views/CALFireAnnotationView.m; sourceTree = "<group>"; };
 		4C9CEC2B196DC13300D029C4 /* calfire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calfire.png; sourceTree = "<group>"; };
 		4C9CEC2D1978487900D029C4 /* firehat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firehat.png; sourceTree = "<group>"; };
 		4C9CEC2E1978487900D029C4 /* firehat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "firehat@2x.png"; sourceTree = "<group>"; };
@@ -286,8 +283,6 @@
 			children = (
 				62ECC96B17FD003100FA0422 /* RatingAnnotationView.h */,
 				62ECC96C17FD003100FA0422 /* RatingAnnotationView.m */,
-				4C9CEBF7196B1CB300D029C4 /* CALFireAnnotationView.h */,
-				4C9CEBF8196B1CB300D029C4 /* CALFireAnnotationView.m */,
 				6217B7A0180359BD00194120 /* HeatmapAnnotationView.h */,
 				6217B7A1180359BD00194120 /* HeatmapAnnotationView.m */,
 			);
@@ -770,7 +765,6 @@
 				62DC118B17FB2F76006FB4A4 /* AppDelegate.m in Sources */,
 				62ECC97017FD043F00FA0422 /* RatingAnnotation.m in Sources */,
 				62DC118717FB2F76006FB4A4 /* main.m in Sources */,
-				4C9CEBF9196B1CB300D029C4 /* CALFireAnnotationView.m in Sources */,
 				62ECC96D17FD003100FA0422 /* RatingAnnotationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

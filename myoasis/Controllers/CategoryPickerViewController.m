@@ -17,15 +17,14 @@
     NSString * selectedCategory;
     NSString * selectedTime;
     NSString * selectedSeverity;
-    NSString * ifOnScene;
     NSInteger selectedCategoryRow;
     NSInteger selectedTimeRow;
     NSInteger selectedSeverityRow;
-    NSInteger selectedonSceneRow;
     int currentTag;
     float currentLat;
     float currentLong;
     float time;
+    UIImage *pic;
 }
 
 @end
@@ -40,7 +39,6 @@
         selectedCategoryRow = -1;
         selectedTimeRow = 0;
         selectedSeverityRow = -1;
-        selectedonSceneRow = 0;
     }
     return self;
 }
@@ -74,14 +72,20 @@
 - (void) finish
 {
     if ( selectedCategory ) {
-        time = (float)[[NSDate date] timeIntervalSince1970 ]*1000;
-        currentLat = [[AppDelegate instance] getCurrentLat];
-        currentLong = [[AppDelegate instance] getCurrentLong];
+        [self dismissViewControllerAnimated:YES completion:^(){
+            time = (float)[[NSDate date] timeIntervalSince1970 ]*1000;
+            currentLat = [[AppDelegate instance] getCurrentLat];
+            currentLong = [[AppDelegate instance] getCurrentLong];
+            pic = self.image;
 
-        NSDictionary * jsonParams = @{@"category": selectedCategory, @"severity": selectedSeverity, @"lat": [NSNumber numberWithFloat:currentLat], @"long": [NSNumber numberWithFloat:currentLong], @"time_submitted": [NSNumber numberWithFloat:time]};
-        [[AppDelegate instance] toggleRatingMenu];
+            NSDictionary * jsonParams = @{@"category": selectedCategory, @"severity": selectedSeverity, @"lat": [NSNumber numberWithFloat:currentLat], @"long": [NSNumber numberWithFloat:currentLong], @"time_submitted": [NSNumber numberWithFloat:time], @"image": pic};
+        
+            NSLog( @"%@", jsonParams );
+            //[[AppDelegate instance] addAnnotation:self.image withDictionary:jsonParams];
+            [[AppDelegate instance] toggleRatingMenu];
+        }];
     };
-    if( selectedCategory ) {
+    /*if( selectedCategory ) {
         [self dismissViewControllerAnimated:YES completion:^(){
             
             NSDictionary * annotationParams = @{ @"category": selectedCategory, @"expiration_time": selectedTime};
@@ -92,7 +96,7 @@
     } else {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:nil message:@"Please select a category" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
-    }
+    }*/
 }
 
 - (void)didReceiveMemoryWarning
@@ -108,20 +112,18 @@
     if( section == 0 ) {
         return @"Fire Subcategory";
     }
-    else if( section == 1 ) {
-        return @"Select Severity of Fire";
-    }
     else
-        return @"Are there Firefighters on the Scene?";
+        return @"Select Severity of Fire";
+    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
     if (currentTag == 0)
-        return 3;
+        return 2;
     else
-        return 3;
+        return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -294,7 +296,7 @@
             }
             break;
         }
-        if ( currentTag == 1)
+        /*if ( currentTag == 1)
         {
             case 2:
             {
@@ -324,7 +326,7 @@
                 }
                 break;
             }
-        }
+        }*/
         default:
             break;
     }
@@ -340,8 +342,6 @@
     else if( indexPath.section == 1) {
         selectedSeverityRow = indexPath.row;
     }
-    else
-        selectedonSceneRow = indexPath.row;
     
     [tableView reloadData];
 }

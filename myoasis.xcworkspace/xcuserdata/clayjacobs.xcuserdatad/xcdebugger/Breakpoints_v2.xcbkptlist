@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "myoasis/Controllers/CategoryPickerViewController.m"
-            timestampString = "431471265.960557"
+            timestampString = "431575492.474502"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "355"
-            endingLineNumber = "355"
+            startingLineNumber = "359"
+            endingLineNumber = "359"
             landmarkName = "@implementation CategoryPickerViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -252,22 +252,6 @@
             startingLineNumber = "24"
             endingLineNumber = "24"
             landmarkName = "-identifier"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "myoasis/Controllers/CategoryPickerViewController.m"
-            timestampString = "431471265.960557"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "-finish"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
