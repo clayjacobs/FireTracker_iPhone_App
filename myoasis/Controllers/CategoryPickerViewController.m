@@ -81,6 +81,26 @@
             NSDictionary * jsonParams = @{@"category": selectedCategory, @"severity": selectedSeverity, @"lat": [NSNumber numberWithFloat:currentLat], @"long": [NSNumber numberWithFloat:currentLong], @"time_submitted": [NSNumber numberWithFloat:time], @"image": pic};
         
             NSLog( @"%@", jsonParams );
+            NSURL *nsURL = [[NSURL alloc] initWithString:@"http://0.0.0.0:3000/orders.json"];
+            NSMutableURLRequest *nsMutableURLRequest = [[NSMutableURLRequest alloc] initWithURL:nsURL];
+            
+            // Set the request's content type to application/x-www-form-urlencoded
+            [nsMutableURLRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+            
+            // Set HTTP method to POST
+            [nsMutableURLRequest setHTTPMethod:@"POST"];
+            
+            // Set up the parameters to send.
+            NSString *paramDataString = [NSString stringWithFormat:@"%@", jsonParams];
+            
+            // Encode the parameters to default for NSMutableURLRequest.
+            NSData *paramData = [paramDataString dataUsingEncoding:NSUTF8StringEncoding];
+            
+            // Set the NSMutableURLRequest body data.
+            [nsMutableURLRequest setHTTPBody: paramData];
+            
+            // Create NSURLConnection and start the request.
+            NSURLConnection *nsUrlConnection=[[NSURLConnection alloc]initWithRequest:nsMutableURLRequest delegate:self];
             //[[AppDelegate instance] addAnnotation:self.image withDictionary:jsonParams];
             [[AppDelegate instance] toggleRatingMenu];
         }];
@@ -234,34 +254,6 @@
             }
                 break;
             }}
-        /*case 1:
-        {
-            if( indexPath.row == selectedTimeRow ) {
-                cell.accessoryType = UITableViewCellAccessoryCheckmark;
-                selectedTime = cell.textLabel.text;
-            } else {
-                cell.accessoryType = UITableViewCellAccessoryNone;
-            }
-            
-            switch (indexPath.row) {
-                case 0:
-                    cell.textLabel.text = @"Never";
-                    break;
-                case 1:
-                    cell.textLabel.text = @"1 hour";
-                    break;
-                case 2:
-                    cell.textLabel.text = @"1 day";
-                    break;
-                case 3:
-                    cell.textLabel.text = @"1 week";
-                    break;
-                    
-                default:
-                    break;
-            }
-            break;
-        }*/
        case 1:
         {
             if( indexPath.row == selectedSeverityRow ) {

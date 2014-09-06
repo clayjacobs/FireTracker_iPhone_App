@@ -25,7 +25,7 @@
         } else if( pin.tag == 1 ) {
             annotationImage = [UIImage imageNamed:@"wildfire-annotation.png"];
         } else if( pin.tag == 2) {
-            annotationImage = [UIImage imageNamed:@"meh-annotation.png"];
+            annotationImage = [UIImage imageNamed:@"brush.png"];
         }
         else {
             annotationImage = [UIImage imageNamed:@"misc-annotation.png"];
