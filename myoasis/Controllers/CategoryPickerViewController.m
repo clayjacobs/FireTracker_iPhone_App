@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 DHLabs. All rights reserved.
 //
 
+#import <AFNetworking/AFHTTPRequestOperationManager.h>
+
 #import "CategoryPickerViewController.h"
 
 #import "AppDelegate.h"
@@ -77,30 +79,45 @@
             currentLat = [[AppDelegate instance] getCurrentLat];
             currentLong = [[AppDelegate instance] getCurrentLong];
             pic = self.image;
+            
+            NSData *imageData = UIImageJPEGRepresentation(pic, .5);
+            
+            AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 
-            NSDictionary * jsonParams = @{@"category": selectedCategory, @"severity": selectedSeverity, @"lat": [NSNumber numberWithFloat:currentLat], @"long": [NSNumber numberWithFloat:currentLong], @"time_submitted": [NSNumber numberWithFloat:time], @"image": pic};
+            NSDictionary * jsonParams = @{@"lat": [NSNumber numberWithFloat:currentLat], @"long": [NSNumber numberWithFloat:currentLong], @"image": pic, @"category": selectedCategory, @"time_submitted": [NSNumber numberWithFloat:time], @"severity": selectedSeverity};
+            
+            NSDictionary *finalForm = [NSDictionary dictionaryWithObject:jsonParams forKey:@"submission"];
+            
+            NSString *imageName = [selectedCategory stringByAppendingString:[[NSNumber numberWithFloat:time] stringValue]];
+            
+            NSString *imagePostUrl = [NSString stringWithFormat:@"http://warm-ridge-5036.herokuapp.com/submissions.json"];
+            NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:imagePostUrl parameters:finalForm constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                [formData appendPartWithFileData:imageData name:@"image" fileName:imageName mimeType:@"image/jpeg"];
+            }];
+            
+            AFHTTPRequestOperation *op = [manager HTTPRequestOperationWithRequest:request success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+                NSLog(@"response: %@", responseObject);
+                manager.responseSerializer.acceptableStatusCodes = [NSIndexSet indexSetWithIndex:400];
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                NSLog(@"Error: %@", error);
+            }];
+            op.responseSerializer = [AFJSONResponseSerializer serializer];
+            [[NSOperationQueue mainQueue] addOperation:op];
+            
+            
+            
+            
+            
         
-            NSLog( @"%@", jsonParams );
-            NSURL *nsURL = [[NSURL alloc] initWithString:@"http://0.0.0.0:3000/orders.json"];
-            NSMutableURLRequest *nsMutableURLRequest = [[NSMutableURLRequest alloc] initWithURL:nsURL];
-            
-            // Set the request's content type to application/x-www-form-urlencoded
-            [nsMutableURLRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-            
-            // Set HTTP method to POST
-            [nsMutableURLRequest setHTTPMethod:@"POST"];
-            
-            // Set up the parameters to send.
-            NSString *paramDataString = [NSString stringWithFormat:@"%@", jsonParams];
-            
-            // Encode the parameters to default for NSMutableURLRequest.
-            NSData *paramData = [paramDataString dataUsingEncoding:NSUTF8StringEncoding];
-            
-            // Set the NSMutableURLRequest body data.
-            [nsMutableURLRequest setHTTPBody: paramData];
-            
-            // Create NSURLConnection and start the request.
-            NSURLConnection *nsUrlConnection=[[NSURLConnection alloc]initWithRequest:nsMutableURLRequest delegate:self];
+            /*AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+            manager.responseSerializer = [AFJSONResponseSerializer serializer];
+            manager.requestSerializer = [AFJSONRequestSerializer serializer];
+            [manager POST:@"http://warm-ridge-5036.herokuapp.com/submissions.json" parameters:jsonParams success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                manager.responseSerializer.acceptableStatusCodes = [NSIndexSet indexSetWithIndex:400];
+                NSLog(@"JSON: %@", responseObject);
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                NSLog(@"Error: %@", error);
+            }];*/
             //[[AppDelegate instance] addAnnotation:self.image withDictionary:jsonParams];
             [[AppDelegate instance] toggleRatingMenu];
         }];

@@ -10,29 +10,29 @@
 	<string>myoasis</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>B76D1B96-3FE9-4058-A130-14B31EBAB673</key>
+		<key>C37F4CC341D90B45CC69BE3C18AABCD2D1C7C5A3</key>
 		<string>https://github.com/clayjacobs/FireTracker_iPhone_App.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>myoasis.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>B76D1B96-3FE9-4058-A130-14B31EBAB673</key>
+		<key>C37F4CC341D90B45CC69BE3C18AABCD2D1C7C5A3</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/clayjacobs/FireTracker_iPhone_App.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>B76D1B96-3FE9-4058-A130-14B31EBAB673</string>
+	<string>C37F4CC341D90B45CC69BE3C18AABCD2D1C7C5A3</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>B76D1B96-3FE9-4058-A130-14B31EBAB673</string>
+			<string>C37F4CC341D90B45CC69BE3C18AABCD2D1C7C5A3</string>
 			<key>IDESourceControlWCCName</key>
 			<string>FireTracker</string>
 		</dict>
