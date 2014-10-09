@@ -7,7 +7,6 @@
 //
 
 #import "RatingDetailView.h"
-#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation RatingDetailView
 
@@ -33,9 +32,6 @@
 
     if( annotation.isLocal ) {
         taggedImage.image = annotation.taggedImage;
-    } else {
-        [taggedImage setImageWithURL: annotation.taggedImageURL
-                    placeholderImage: [UIImage imageNamed:@"loading"]];
     }
 }
 

@@ -134,6 +134,20 @@
     
     NSLog(@"Created coord1");
     NSLog(@"coord1Annotation create... attempting to add annotation");
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:@"http://warm-ridge-5036.herokuapp.com/submissions.json"
+      parameters:nil
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSLog(@"JSON: %@", responseObject);
+             NSMutableArray *jsonArray = [NSMutableArray arrayWithArray:responseObject];
+             NSLog(@"Response: %@", jsonArray);
+             //NSLog(@"Piece of data: %@", [NSArray jsonArray:(NSUInteger)0]);
+         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"Error: %@", error);
+         }];
+    
+    
     NSLog(@"%f",self.location.coordinate.latitude);
 }
 
