@@ -30,6 +30,7 @@
 
 - (void) addAnnotation: (int) tagType withImage: (UIImage*) taggedImage;
 - (NSString*) boundingBox;
+- (void) addIcon: (NSMutableArray*)datum;
 
 - (IBAction) mapViewOptionSelected: (id)sender;
 - (IBAction) recenterMap:(id)sender;

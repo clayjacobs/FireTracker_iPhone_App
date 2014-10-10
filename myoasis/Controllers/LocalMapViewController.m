@@ -14,6 +14,7 @@
 #import "RatingAnnotationView.h"
 #import "HeatmapAnnotationView.h"
 #import "CALFireAnnotation.h"
+#import "UserDataAnnotation.h"
 
 #import "KeepData.h"
 #import "AFNetworking.h"
@@ -139,10 +140,11 @@
     [manager GET:@"http://warm-ridge-5036.herokuapp.com/submissions.json"
       parameters:nil
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             NSLog(@"JSON: %@", responseObject);
              NSMutableArray *jsonArray = [NSMutableArray arrayWithArray:responseObject];
              NSLog(@"Response: %@", jsonArray);
-             //NSLog(@"Piece of data: %@", [NSArray jsonArray:(NSUInteger)0]);
+             NSString *category = [[jsonArray objectAtIndex:0]valueForKey:@"category"];
+             NSLog(@"Category ?: %@",category);
+             [self addIcon:jsonArray];
          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"Error: %@", error);
          }];
@@ -188,6 +190,31 @@
     
     [mapView addAnnotation: annotation];
     
+}
+
+- (void) addIcon: (NSMutableArray*)datum {
+    
+    NSLog(@"Made it to addIcon method");
+    
+    int limit = 100;
+    
+    if ([datum count] < 100) {
+        limit = [datum count];
+    }
+    
+    //Take up to most recent 100 icons
+    for (int i=0; i<limit; i++)
+    {
+        NSString *category = [[datum objectAtIndex:i]valueForKey:@"category"];
+        CLLocationDegrees latitude = [(NSNumber*)[[datum objectAtIndex:i]valueForKey:@"lat"] doubleValue];
+        CLLocationDegrees longtitude = [(NSNumber*)[[datum objectAtIndex:i]valueForKey:@"long"] floatValue];
+        NSString *size = [[datum objectAtIndex:i]valueForKey:@"severity"];
+        
+        
+        UserDataAnnotation *annotation = [[UserDataAnnotation alloc] initCategory:category Location:CLLocationCoordinate2DMake(latitude, longtitude) Size:size];
+        [mapView addAnnotation: annotation];
+        
+    }
 }
 
 - (void) settings {
@@ -466,6 +493,24 @@
         
         return annotationView1;
     }
+    
+    if ([annotation isKindOfClass:[UserDataAnnotation class]]) {
+        NSLog(@"Adding UserDataAnnotation");
+        UserDataAnnotation *myLocation = (UserDataAnnotation *)annotation;
+        
+        MKAnnotationView *annotationView1 = [mapView dequeueReusableAnnotationViewWithIdentifier:@"UserDataAnnotation"];
+        
+        if (annotationView1 == nil) {
+            annotationView1 = myLocation.annotationView;
+        }
+        else {
+            annotationView1.annotation = annotation;
+        }
+        
+        return annotationView1;
+    }
+    
+    
     /*else
     {
         NSLog(@"Returning nil");

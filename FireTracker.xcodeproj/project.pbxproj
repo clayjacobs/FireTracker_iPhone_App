@@ -49,6 +49,7 @@
 		4C9CEC5A197D9F8200D029C4 /* retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9CEC57197D9F8200D029C4 /* retina.png */; };
 		4C9CEC5D197DA38000D029C4 /* citizen.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9CEC5B197DA38000D029C4 /* citizen.png */; };
 		4C9CEC5E197DA38000D029C4 /* citizen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9CEC5C197DA38000D029C4 /* citizen@2x.png */; };
+		4CC9ECCE19E76E5C0027559B /* UserDataAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9ECCD19E76E5C0027559B /* UserDataAnnotation.m */; };
 		6217B7A2180359BD00194120 /* HeatmapAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6217B7A1180359BD00194120 /* HeatmapAnnotationView.m */; };
 		621B7726184E5F4D0006B375 /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 621B7725184E5F4D0006B375 /* loading.png */; };
 		6231FDB51846B917001602ED /* recenter.png in Resources */ = {isa = PBXBuildFile; fileRef = 6231FDB31846B917001602ED /* recenter.png */; };
@@ -153,6 +154,8 @@
 		4C9CEC57197D9F8200D029C4 /* retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retina.png; sourceTree = "<group>"; };
 		4C9CEC5B197DA38000D029C4 /* citizen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = citizen.png; sourceTree = "<group>"; };
 		4C9CEC5C197DA38000D029C4 /* citizen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "citizen@2x.png"; sourceTree = "<group>"; };
+		4CC9ECCC19E76E250027559B /* UserDataAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDataAnnotation.h; sourceTree = "<group>"; };
+		4CC9ECCD19E76E5C0027559B /* UserDataAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDataAnnotation.m; sourceTree = "<group>"; };
 		6217B7A0180359BD00194120 /* HeatmapAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeatmapAnnotationView.h; path = Views/HeatmapAnnotationView.h; sourceTree = "<group>"; };
 		6217B7A1180359BD00194120 /* HeatmapAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeatmapAnnotationView.m; path = Views/HeatmapAnnotationView.m; sourceTree = "<group>"; };
 		621B7725184E5F4D0006B375 /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
@@ -476,6 +479,8 @@
 				4C9CEBF3196B05A600D029C4 /* CALFireAnnotation.m */,
 				62ECC96E17FD043F00FA0422 /* RatingAnnotation.h */,
 				62ECC96F17FD043F00FA0422 /* RatingAnnotation.m */,
+				4CC9ECCC19E76E250027559B /* UserDataAnnotation.h */,
+				4CC9ECCD19E76E5C0027559B /* UserDataAnnotation.m */,
 				6217B79F180359A600194120 /* Annotations */,
 				62DC11BB17FB543E006FB4A4 /* RatingMenuView.h */,
 				62DC11BC17FB543E006FB4A4 /* RatingMenuView.m */,
@@ -720,6 +725,7 @@
 				629EE1151804DCB700DF50DB /* KeepData.m in Sources */,
 				14F4E2911868991F004C616C /* CategoryPickerViewController.m in Sources */,
 				62DC11C717FC8655006FB4A4 /* ImageTaggerViewController.m in Sources */,
+				4CC9ECCE19E76E5C0027559B /* UserDataAnnotation.m in Sources */,
 				62DC11B417FB39A4006FB4A4 /* LocalMapViewController.m in Sources */,
 				6217B7A2180359BD00194120 /* HeatmapAnnotationView.m in Sources */,
 				62DC118B17FB2F76006FB4A4 /* AppDelegate.m in Sources */,
